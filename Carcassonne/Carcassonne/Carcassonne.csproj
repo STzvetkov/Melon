@@ -51,11 +51,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Engine.cs" />
     <Compile Include="Common\GameStateEnum.cs" />
+    <Compile Include="Common\Map.cs" />
     <Compile Include="Common\Player.cs" />
+    <Compile Include="Common\SavedGame.cs" />
     <Compile Include="Common\TerrainTypeEnum.cs" />
+    <Compile Include="Common\TileType.cs" />
     <Compile Include="GameClass.cs" />
+    <Compile Include="GameObjects\Dragon.cs" />
+    <Compile Include="GameObjects\Fairy.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\Menu.cs" />
+    <Compile Include="GameObjects\Pawn.cs" />
+    <Compile Include="GameObjects\ScoreBoard.cs" />
+    <Compile Include="GameObjects\Soldier.cs" />
+    <Compile Include="GameObjects\Tile.cs" />
+    <Compile Include="Interfaces\IClickable.cs" />
+    <Compile Include="Interfaces\IDrawable.cs" />
+    <Compile Include="Interfaces\IGameObject.cs" />
+    <Compile Include="Interfaces\IMovable.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -83,7 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Menu\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
