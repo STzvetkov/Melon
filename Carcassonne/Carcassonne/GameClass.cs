@@ -28,10 +28,5 @@ namespace Carcassonne
                 return game;
             }
         }
-
-        //general
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-        private Song backgroundMusic;
     }
 }
