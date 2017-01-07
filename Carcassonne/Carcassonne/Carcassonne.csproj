@@ -58,6 +58,7 @@
     <Compile Include="Common\SavedGame.cs" />
     <Compile Include="Common\TerrainTypeEnum.cs" />
     <Compile Include="Common\TileType.cs" />
+    <Compile Include="Constants\CommonConstants.cs" />
     <Compile Include="GameClass.cs" />
     <Compile Include="GameObjects\Dragon.cs" />
     <Compile Include="GameObjects\Fairy.cs" />

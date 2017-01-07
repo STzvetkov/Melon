@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Carcassonne.GameObjects
+namespace Carcassonne.Constants
 {
-    public abstract class Pawn
+    class CommonConstants
     {
     }
 }
