@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\EndGameArguments.cs" />
+    <Compile Include="Common\EndGameHandler.cs" />
     <Compile Include="Common\Engine.cs" />
     <Compile Include="Common\GameStateEnum.cs" />
     <Compile Include="Common\Map.cs" />

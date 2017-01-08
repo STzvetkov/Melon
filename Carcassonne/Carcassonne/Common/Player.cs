@@ -12,6 +12,7 @@ namespace Carcassonne.Common
     {
         //fields
         private string name;
+        public int score;
         private int colorId;
         private bool hasAvatar;
         public int turnOrder;
@@ -52,6 +53,12 @@ namespace Carcassonne.Common
         {
             get { return this.pawnCount; }
             set { this.pawnCount = value; }
+        }
+
+        public int Score
+        {
+            get { return this.score; }
+            set { this.score = value; }
         }
 
         public bool HasAvatar
