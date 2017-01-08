@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Carcassonne.GameObjects;
+using Carcassonne.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.Common
 {
-    class Player
+    class Player : IPlayer
     {
         //fields
         private string name;
         private int colorId;
         private bool hasAvatar;
         public int turnOrder;
+        private int pawnCount;
+        private List<Pawn> pawns;
 
         //properties
         public string Name
@@ -44,6 +48,12 @@ namespace Carcassonne.Common
             }
         }
 
+        public int PawnCount
+        {
+            get { return this.pawnCount; }
+            set { this.pawnCount = value; }
+        }
+
         public bool HasAvatar
         {
             get { return this.hasAvatar; }
@@ -55,6 +65,12 @@ namespace Carcassonne.Common
             set { this.turnOrder = value; }
         }
 
+        public List<Pawn> Pawns
+        {
+            get { return this.pawns; }
+            set { this.pawns = value; }
+        }
+
         //Constructor
 
         public Player(string name,int colorId,bool hasAvatar)
@@ -64,5 +80,18 @@ namespace Carcassonne.Common
             this.HasAvatar = hasAvatar;
         }
 
+        //Methods
+        public void AddPawn(Pawn pawn)
+        {
+            this.PawnCount++;
+            pawns.Add(pawn);
+        }
+
+        public void RemovePawn(Pawn pawn)
+        {
+            this.pawnCount--;
+            pawns.Remove(pawn);
+
+        }
     }
 }
