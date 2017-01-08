@@ -12,6 +12,7 @@ namespace Carcassonne.Common
         private string name;
         private int colorId;
         private bool hasAvatar;
+        public int turnOrder;
 
         //properties
         public string Name
@@ -47,6 +48,11 @@ namespace Carcassonne.Common
         {
             get { return this.hasAvatar; }
             set { this.hasAvatar = value; }
+        }
+        public int TurnOrder
+        {
+            get { return this.turnOrder; }
+            set { this.turnOrder = value; }
         }
 
         //Constructor
