@@ -58,6 +58,7 @@
     <Compile Include="Common\Map.cs" />
     <Compile Include="Common\Player.cs" />
     <Compile Include="Common\SavedGame.cs" />
+    <Compile Include="Common\Sector.cs" />
     <Compile Include="Common\TerrainTypeEnum.cs" />
     <Compile Include="Common\TileType.cs" />
     <Compile Include="Constants\CommonConstants.cs" />
