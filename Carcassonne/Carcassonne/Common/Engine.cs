@@ -98,5 +98,29 @@ namespace Carcassonne.Common
         {
             return 0;
         }
+
+        private int CalcMonastery(Tile playedTile, Tile monasteryTile)
+        {
+            /*if (playedTile.X == monasteryTile.X && playedTile.Y == monasteryTile.Y)
+            {
+
+            }*/
+            return 0;
+        }
+
+        private int CalcRoad(Tile playedTile)
+        {
+
+            return 0;
+
+        }
+
+        private int CalcCastle(Tile playedTile)
+        {
+
+            return 0;
+        }
+
+
     }
 }
