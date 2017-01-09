@@ -16,6 +16,11 @@ namespace Carcassonne
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //initializing and starting game -> u can comment it out.
+            using (var game = GameClass.Game)
+            {
+                game.Run();
+            }
         }
     }
 }
