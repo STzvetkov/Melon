@@ -8,11 +8,11 @@ namespace Carcassonne.Common
 {
         public enum TerrainTypeEnum
         {
-            Desert,
-            Mountains,
-            Hills,
-            Forest,
-            Fields,
-            Pasture
+           Field,
+           Road,
+           Crossroad,
+           Castle,
+           Monastery,
+           Wall
         }
 }
