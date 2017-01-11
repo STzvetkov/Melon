@@ -65,7 +65,8 @@
     <Compile Include="GameClass.cs" />
     <Compile Include="GameObjects\Dragon.cs" />
     <Compile Include="GameObjects\Fairy.cs" />
-    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\ScreenObject.cs" />
+    <Compile Include="GameObjects\MapObjects.cs" />
     <Compile Include="GameObjects\Menu.cs" />
     <Compile Include="GameObjects\Pawn.cs" />
     <Compile Include="GameObjects\ScoreBoard.cs" />

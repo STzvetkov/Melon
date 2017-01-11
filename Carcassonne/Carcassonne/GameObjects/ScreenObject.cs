@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.GameObjects
 {
-    public abstract class GameObject
+    public abstract class ScreenObject
     {
+        public int ScreenY { get; set; }
+        public int ScreenX { get; set; }
+
 
     }
 }

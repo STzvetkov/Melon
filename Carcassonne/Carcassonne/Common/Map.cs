@@ -7,7 +7,7 @@ using Carcassonne.GameObjects;
 
 namespace Carcassonne.Common
 {
-    class Map
+    public class Map
     {
         public const byte Size = 200;
 

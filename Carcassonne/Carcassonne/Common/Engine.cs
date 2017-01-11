@@ -7,13 +7,14 @@ using Carcassonne.GameObjects;
 
 namespace Carcassonne.Common
 {
-    class Engine
+    public class Engine
     {
 
-        public bool CheckPosition(byte targetX, byte targetY, Tile playedTile, Map map)
+        public static bool CheckPosition(byte targetX, byte targetY, Tile playedTile)
         {
             byte checkedWithX, checkedWithY;
             Tile checkedWithTile;
+            Map map = GameClass.Game.Map;
             //Check top tile            
             if (targetY>0)
             {

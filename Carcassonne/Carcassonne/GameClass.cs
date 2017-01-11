@@ -10,14 +10,18 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Carcassonne.Common;
 
 namespace Carcassonne
 {
     public class GameClass : Game
     {
         private static GameClass game;
+        private Map map;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+       
 
         public GameClass()
         {
@@ -37,6 +41,8 @@ namespace Carcassonne
                 return game;
             }
         }
+
+        public Map Map { get; set; }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -81,7 +87,7 @@ namespace Carcassonne
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                Exit();
+                //Exit(); compilation error
             }
 
             // TODO: Add your update logic here
