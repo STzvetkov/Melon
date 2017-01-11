@@ -11,5 +11,11 @@ namespace Carcassonne.Common
     {
         public TerrainTypeEnum Terrain;
         public Pawn OccupiedBy;
+
+        public Sector(TerrainTypeEnum terrainInit, Pawn pawnInit)
+        {
+            this.Terrain = terrainInit;
+            this.OccupiedBy = pawnInit;
+        }
     }
 }

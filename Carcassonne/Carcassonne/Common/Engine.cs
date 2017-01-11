@@ -24,7 +24,7 @@ namespace Carcassonne.Common
                     checkedWithTile = map[checkedWithX, checkedWithY];
                     for (int i = 0; i < 3; i++)
                     {
-                        /*if (playedTile.terrainGrid[0,i]!=checkedWithTile.terrainGrid[0, i])
+                        /*if (playedTile.sectorsGrid[0,i]!=checkedWithTile.sectorsGrid[0, i])
                         {
                             return false;
                         }*/
@@ -42,7 +42,7 @@ namespace Carcassonne.Common
                     checkedWithTile = map[checkedWithX, checkedWithY];
                     for (int i = 0; i < 3; i++)
                     {
-                        /*if (playedTile.terrainGrid[2,i]!=checkedWithTile.terrainGrid[2, i])
+                        /*if (playedTile.sectorsGrid[2,i]!=checkedWithTile.sectorsGrid[2, i])
                         {
                             return false;
                         }*/
@@ -60,7 +60,7 @@ namespace Carcassonne.Common
                     checkedWithTile = map[checkedWithX, checkedWithY];
                     for (int i = 0; i < 3; i++)
                     {
-                        /*if (playedTile.terrainGrid[i,0]!=checkedWithTile.terrainGrid[i,0])
+                        /*if (playedTile.sectorsGrid[i,0]!=checkedWithTile.sectorsGrid[i,0])
                         {
                             return false;
                         }*/
@@ -78,7 +78,7 @@ namespace Carcassonne.Common
                     checkedWithTile = map[checkedWithX, checkedWithY];
                     for (int i = 0; i < 3; i++)
                     {
-                        /*if (playedTile.terrainGrid[i,2]!=checkedWithTile.terrainGrid[i,2])
+                        /*if (playedTile.sectorsGrid[i,2]!=checkedWithTile.sectorsGrid[i,2])
                         {
                             return false;
                         }*/
