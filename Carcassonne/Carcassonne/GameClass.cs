@@ -14,7 +14,7 @@ using Carcassonne.Common;
 
 namespace Carcassonne
 {
-    public class GameClass : Game
+    sealed class GameClass : Game
     {
         private static GameClass game;
         private Map map;
@@ -23,7 +23,7 @@ namespace Carcassonne
 
        
 
-        public GameClass()
+        private GameClass()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
