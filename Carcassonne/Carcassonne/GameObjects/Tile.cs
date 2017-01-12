@@ -28,11 +28,23 @@ namespace Carcassonne.GameObjects
         public void Rotate()
         {
             //TODO
+            // rotation++;
+            // rotation = rotation % 4;
         }
+
+        public void Rotate(int times)
+        {
+            for (int i = 0; i < times % 4; i++)
+                Rotate();
+        }
+
 
         public void Play(byte targetX, byte targetY)
         {
             Engine.CheckPosition(targetX, targetY, this);
         }
+
+        
+
     }
 }
