@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.Interfaces
 {
-    interface IGameObject
+    interface IGameObject : IClickable,IPlayer
     {
+        byte PlayerID { get; }
+        bool IsActive { get; }
     }
 }
