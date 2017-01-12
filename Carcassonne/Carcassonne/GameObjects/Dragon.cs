@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.GameObjects
 {
-    class Dragon
+    class Dragon : Creature
     {
     }
 }

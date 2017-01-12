@@ -63,6 +63,7 @@
     <Compile Include="Common\TileType.cs" />
     <Compile Include="Constants\CommonConstants.cs" />
     <Compile Include="GameClass.cs" />
+    <Compile Include="GameObjects\Creature.cs" />
     <Compile Include="GameObjects\Dragon.cs" />
     <Compile Include="GameObjects\Fairy.cs" />
     <Compile Include="GameObjects\ScreenObject.cs" />
