@@ -7,7 +7,7 @@ using Carcassonne.GameObjects;
 
 namespace Carcassonne.Common
 {
-    struct Sector
+    public struct Sector
     {
         public TerrainTypeEnum Terrain;
         public Pawn OccupiedBy;
