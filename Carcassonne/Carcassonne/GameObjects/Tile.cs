@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.GameObjects
 {
-    public class Tile
+    public class Tile:MapObjects
     {
+        public const int GridSize = 5;
+
         private Sector[,] sectorsGrid;
         private TileType type;
         private bool isRevealed;
@@ -16,9 +18,9 @@ namespace Carcassonne.GameObjects
 
         public Tile()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < GridSize; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < GridSize; j++)
                 {
                     this.sectorsGrid[i, j] = new Sector(0,null);
                 }

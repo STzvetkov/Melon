@@ -23,12 +23,12 @@ namespace Carcassonne.Common
                 if (map[checkedWithX, checkedWithY]!=null)
                 {
                     checkedWithTile = map[checkedWithX, checkedWithY];
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < Tile.GridSize; i++)
                     {
-                        /*if (playedTile.sectorsGrid[0,i]!=checkedWithTile.sectorsGrid[0, i])
+                        if (playedTile.SectorsGrid[0,i].Terrain!=checkedWithTile.SectorsGrid[0, i].Terrain)
                         {
                             return false;
-                        }*/
+                        }
                     }
                 }                
             }
@@ -41,12 +41,12 @@ namespace Carcassonne.Common
                 if (map[checkedWithX, checkedWithY] != null)
                 {
                     checkedWithTile = map[checkedWithX, checkedWithY];
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < Tile.GridSize; i++)
                     {
-                        /*if (playedTile.sectorsGrid[2,i]!=checkedWithTile.sectorsGrid[2, i])
+                        if (playedTile.SectorsGrid[Tile.GridSize-1,i].Terrain!=checkedWithTile.SectorsGrid[Tile.GridSize-1, i].Terrain)
                         {
                             return false;
-                        }*/
+                        }
                     }
                 }
             }
@@ -61,10 +61,10 @@ namespace Carcassonne.Common
                     checkedWithTile = map[checkedWithX, checkedWithY];
                     for (int i = 0; i < 3; i++)
                     {
-                        /*if (playedTile.sectorsGrid[i,0]!=checkedWithTile.sectorsGrid[i,0])
+                        if (playedTile.SectorsGrid[i,0].Terrain!=checkedWithTile.SectorsGrid[i,0].Terrain)
                         {
                             return false;
-                        }*/
+                        }
                     }
                 }
             }
@@ -79,10 +79,10 @@ namespace Carcassonne.Common
                     checkedWithTile = map[checkedWithX, checkedWithY];
                     for (int i = 0; i < 3; i++)
                     {
-                        /*if (playedTile.sectorsGrid[i,2]!=checkedWithTile.sectorsGrid[i,2])
+                        if (playedTile.SectorsGrid[i,Tile.GridSize-1].Terrain!=checkedWithTile.SectorsGrid[i,Tile.GridSize].Terrain)
                         {
                             return false;
-                        }*/
+                        }
                     }
                 }
             }
@@ -102,10 +102,10 @@ namespace Carcassonne.Common
 
         private int CalcMonastery(Tile playedTile, Tile monasteryTile)
         {
-            /*if (playedTile.X == monasteryTile.X && playedTile.Y == monasteryTile.Y)
+            if (playedTile.ScreenX == monasteryTile.ScreenX && playedTile.ScreenY == monasteryTile.ScreenY)
             {
 
-            }*/
+            }
             return 0;
         }
 
