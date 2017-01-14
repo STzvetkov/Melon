@@ -61,13 +61,7 @@ namespace Carcassonne.GameObjects
                 newRow++;
             }
             return newGrid;
-        }
-
-        public void Rotate(int times)
-        {
-            for (int i = 0; i < times % 4; i++)
-                Rotate(this.sectorsGrid);
-        }
+        }       
 
 
         public void Play(byte targetX, byte targetY)
