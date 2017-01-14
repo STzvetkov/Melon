@@ -18,6 +18,7 @@ namespace Carcassonne.GameObjects
         private bool hasShield;
         
 
+
         public static Dictionary<TileType, byte> numberOfTileType = new Dictionary<TileType, byte>
         {
             { TileType.Road, 8 },

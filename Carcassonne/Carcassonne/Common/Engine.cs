@@ -117,7 +117,7 @@ namespace Carcassonne.Common
             return 0;
         }
 
-        private void CalcRoad(Tile playedTile, ref byte startX, ref byte startY, ref List<Soldier> guardsLst, ref int result)
+        private int CalcRoad(Tile playedTile, ref byte startX, ref byte startY, ref byte endX, ref byte endY, ref List<Soldier> guardsLst)
         {
             Map map = GameClass.Game.Map;
             Tile nextTile = new Tile();
@@ -126,28 +126,87 @@ namespace Carcassonne.Common
             switch (playedTile.Type)
             {
                 case TileType.Road:
-                    // horizontal road
-                    if (playedTile.SectorsGrid[Tile.GridSize/2, 0].Terrain==TerrainTypeEnum.Road)
+                    // check for Soldier
+                    guard = playedTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize / 2].OccupiedBy;
+                    if (guard != null)
                     {
+                        guardsLst.Add(guard);
+                    }
+                    // horizontal road
+                    if (playedTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
+                    {              
                         // search to the left
-                        nextTile = map[playedTile.mapX, playedTile.mapY];
-                        while (nextTile!=null &&
-                               nextTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize-1].Terrain==TerrainTypeEnum.Road)
+                        if (playedTile.mapX>0)
                         {
-                            guard = nextTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize - 1].OccupiedBy;
-                            if (guard!=null)
+                            nextTile = map[playedTile.mapY, (byte)(playedTile.mapX - 1)];
+                            while (nextTile != null &&
+                                   nextTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize - 1].Terrain == TerrainTypeEnum.Road)
                             {
-                                guardsLst.Add(guard);
+                                return CalcRoad(nextTile, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+                            }
+                        }
+                        // search to the right
+                        if (playedTile.mapX < Map.Size-1)
+                        {
+                            nextTile = map[playedTile.mapY, (byte)(playedTile.mapX + 1)];
+                            while (nextTile != null &&
+                                   nextTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
+                            {
+                                return CalcRoad(nextTile, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
                             }
                         }
                     }
                     // vertical road
                     else
                     {
-
+                        // search to the top
+                        if (playedTile.mapY > 0)
+                        {
+                            nextTile = map[(byte)(playedTile.mapY-1), playedTile.mapX];
+                            while (nextTile != null &&
+                                   nextTile.SectorsGrid[Tile.GridSize-1, Tile.GridSize / 2].Terrain == TerrainTypeEnum.Road)
+                            {
+                                return CalcRoad(nextTile, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+                            }
+                        }
+                        // search to the bottom
+                        if (playedTile.mapY < Map.Size - 1)
+                        {
+                            nextTile = map[(byte)(playedTile.mapY+1), playedTile.mapX];
+                            while (nextTile != null &&
+                                   nextTile.SectorsGrid[0, Tile.GridSize / 2].Terrain == TerrainTypeEnum.Road)
+                            {
+                                return CalcRoad(nextTile, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+                            }
+                        }
                     }
                     break;
                 case TileType.Turn:
+                    guard = playedTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize / 2].OccupiedBy;
+                    if (guard != null)
+                    {
+                        guardsLst.Add(guard);
+                    }
+                    // left turn
+                    if (playedTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
+                    {
+
+                    }
+                    //right turn
+                    else if (playedTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
+                    {
+
+                    }
+                    //top turn
+                    else if (playedTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
+                    {
+
+                    }
+                    // bottom turn
+                    else
+                    {
+
+                    }
                     break;
                 case TileType.TCrossroad:
                     break;
@@ -196,11 +255,8 @@ namespace Carcassonne.Common
                 default:
                     break;
             }
-            // check top
-            if (playedTile.SectorsGrid[0, Tile.GridSize/2].Terrain==TerrainTypeEnum.Road)                 
-            {
 
-            }
+            return 1;
         }
 
         private int CalcCastle(Tile playedTile)
