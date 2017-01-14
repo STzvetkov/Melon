@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace Carcassonne
 {
+#if WINDOWS || LINUX
     static class Program
     {
         /// <summary>
@@ -23,4 +24,5 @@ namespace Carcassonne
             }
         }
     }
+#endif
 }
