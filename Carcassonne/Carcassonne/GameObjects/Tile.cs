@@ -16,7 +16,8 @@ namespace Carcassonne.GameObjects
         private bool isRevealed;
         private bool isPlayed;
         private bool hasShield;
-        
+        private int orientataion;
+
 
 
         public static Dictionary<TileType, byte> numberOfTileType = new Dictionary<TileType, byte>
@@ -56,6 +57,25 @@ namespace Carcassonne.GameObjects
                     this.sectorsGrid[i, j] = new Sector(0,null);
                 }
             }
+            this.orientataion = 0;
+            this.hasShield = false;
+            this.isPlayed = false;
+            this.isRevealed = false;
+        }
+
+        public Tile(TileType type)
+        {
+            for (int i = 0; i < GridSize; i++)
+            {
+                for (int j = 0; j < GridSize; j++)
+                {
+                    this.sectorsGrid[i, j] = new Sector(0, null);
+                }
+            }
+            this.orientataion = 0;
+            this.hasShield = false;
+            this.isPlayed = false;
+            this.isRevealed = false;
         }
 
         public Sector[,] SectorsGrid
@@ -72,13 +92,13 @@ namespace Carcassonne.GameObjects
 
         public TileType Type
         {
-            get;
-            set;
+            get { return this.type; }           
         }
+        
         //TODO:constructor with propeties
         public Sector[,] Rotate(Sector[,] oldGrid)
         {
-
+            
             Sector[,] newGrid = new Sector[oldGrid.GetLength(1), oldGrid.GetLength(0)];
             int newColumn = 0;
             int newRow = 0;
@@ -92,6 +112,7 @@ namespace Carcassonne.GameObjects
                 }
                 newRow++;
             }
+            this.orientataion = (this.orientataion + 1) % 4;
             return newGrid;
         }       
 
@@ -101,7 +122,73 @@ namespace Carcassonne.GameObjects
             Engine.CheckPosition(targetX, targetY, this);
         }
 
-        
-
+        public int Orientation
+        {
+            get{ return this.orientataion; }
+        }
+        //Initializations 
+        private void Init(TileType type)
+        {
+            for (int i = 0; i < GridSize; i++)
+            {
+                for (int j = 0; j < GridSize; j++)
+                {
+                    this.sectorsGrid[i, j] = new Sector(0, null);
+                }
+            }
+            switch (type)
+            {
+                case TileType.Road: 
+                    break;
+                case TileType.Turn:
+                    break;
+                case TileType.TCrossroad:
+                    break;
+                case TileType.XCrossroad:
+                    break;
+                case TileType.Gate:
+                    break;
+                case TileType.GateShield:
+                    break;
+                case TileType.GatePlusRoad:
+                    break;
+                case TileType.GateShieldPlusRoad:
+                    break;
+                case TileType.DCastle:
+                    break;
+                case TileType.DCastleShield:
+                    break;
+                case TileType.DCastlePlusTurn:
+                    break;
+                case TileType.DCastleShieldPlusTurn:
+                    break;
+                case TileType.HCastle:
+                    break;
+                case TileType.HCastlePlusTurnRight:
+                    break;
+                case TileType.HCastlePlusTurnLeft:
+                    break;
+                case TileType.HCastlePlusRoad:
+                    break;
+                case TileType.HCastlePlusTCrossorad:
+                    break;
+                case TileType.OHCastles:
+                    break;
+                case TileType.NHCastles:
+                    break;
+                case TileType.Bridge:
+                    break;
+                case TileType.BridgeShield:
+                    break;
+                case TileType.Square:
+                    break;
+                case TileType.Monastery:
+                    break;
+                case TileType.MonasteryPlusRoad:
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
