@@ -104,6 +104,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Content\Content.mgcb" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -120,9 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Menu\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\Music\CarcassonneBackground.mp3" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
