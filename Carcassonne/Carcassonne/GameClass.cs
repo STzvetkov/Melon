@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Carcassonne.Common;
+using Carcassonne.Constants;
 
 namespace Carcassonne
 {
@@ -27,6 +28,10 @@ namespace Carcassonne
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.graphics.PreferredBackBufferWidth = CommonConstants.windowWidth;
+            this.graphics.PreferredBackBufferHeight = CommonConstants.windowHeight;
+            this.graphics.ApplyChanges();
+
             IsMouseVisible = true;
         }
         
