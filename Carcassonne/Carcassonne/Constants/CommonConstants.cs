@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.Constants
 {
-    class CommonConstants
+    public class CommonConstants
     {
+        //Game window size
+        public static readonly int windowWidth = 800;
+        public static readonly int windowHeight = 600;
     }
 }
