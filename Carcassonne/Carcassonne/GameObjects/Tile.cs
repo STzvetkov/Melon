@@ -45,17 +45,28 @@ namespace Carcassonne.GameObjects
             set;
         }
         //TODO:constructor with propeties
-        public void Rotate()
+        public Sector[,] Rotate(Sector[,] oldGrid)
         {
-            //TODO
-            // rotation++;
-            // rotation = rotation % 4;
+            Sector[,] newGrid = new Sector[oldGrid.GetLength(1), oldGrid.GetLength(0)];
+            int newColumn = 0;
+            int newRow = 0;
+            for (int oldColumn = oldGrid.GetLength(1) - 1; oldColumn >= 0; oldColumn--)
+            {
+                newColumn = 0;
+                for (int oldRow = 0; oldRow < oldGrid.GetLength(0); oldRow++)
+                {
+                    newGrid[newRow, newColumn] = oldGrid[oldRow, oldColumn];
+                    newColumn++;
+                }
+                newRow++;
+            }
+            return newGrid;
         }
 
         public void Rotate(int times)
         {
             for (int i = 0; i < times % 4; i++)
-                Rotate();
+                Rotate(this.sectorsGrid);
         }
 
 
