@@ -38,6 +38,12 @@ namespace Carcassonne.GameObjects
                 this.sectorsGrid = value;
             }
         }
+
+        public TileType Type
+        {
+            get;
+            set;
+        }
         //TODO:constructor with propeties
         public void Rotate()
         {

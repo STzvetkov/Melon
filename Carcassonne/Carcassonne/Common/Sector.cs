@@ -10,9 +10,9 @@ namespace Carcassonne.Common
     public struct Sector
     {
         public TerrainTypeEnum Terrain;
-        public Pawn OccupiedBy;
+        public Soldier OccupiedBy;
 
-        public Sector(TerrainTypeEnum terrainInit, Pawn pawnInit)
+        public Sector(TerrainTypeEnum terrainInit, Soldier pawnInit)
         {
             this.Terrain = terrainInit;
             this.OccupiedBy = pawnInit;
