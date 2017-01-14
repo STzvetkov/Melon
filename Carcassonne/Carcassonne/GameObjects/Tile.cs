@@ -16,6 +16,7 @@ namespace Carcassonne.GameObjects
         private bool isRevealed;
         private bool isPlayed;
         private bool hasShield;
+        
 
         public static Dictionary<TileType, byte> numberOfTileType = new Dictionary<TileType, byte>
         {
@@ -76,6 +77,7 @@ namespace Carcassonne.GameObjects
         //TODO:constructor with propeties
         public Sector[,] Rotate(Sector[,] oldGrid)
         {
+
             Sector[,] newGrid = new Sector[oldGrid.GetLength(1), oldGrid.GetLength(0)];
             int newColumn = 0;
             int newRow = 0;
