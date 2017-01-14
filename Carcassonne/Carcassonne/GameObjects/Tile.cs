@@ -15,6 +15,35 @@ namespace Carcassonne.GameObjects
         private TileType type;
         private bool isRevealed;
         private bool isPlayed;
+        private bool hasShield;
+
+        public static Dictionary<TileType, byte> numberOfTileType = new Dictionary<TileType, byte>
+        {
+            { TileType.Road, 8 },
+            { TileType.Turn, 9},
+            { TileType.TCrossroad, 4},
+            { TileType.XCrossroad, 1},
+            { TileType.Gate, 3},
+            { TileType.GateShield, 1},
+            { TileType.GatePlusRoad, 1},
+            { TileType.GateShieldPlusRoad, 2},
+            { TileType.DCastle, 3 },
+            { TileType.DCastleShield, 2},
+            { TileType.DCastlePlusTurn, 3},
+            { TileType.DCastleShieldPlusTurn, 2},
+            { TileType.HCastle, 5},
+            { TileType.HCastlePlusTurnRight, 3},
+            { TileType.HCastlePlusTurnLeft, 3},
+            { TileType.HCastlePlusRoad, 4},
+            { TileType.HCastlePlusTCrossorad, 3},
+            { TileType.OHCastles, 3},
+            { TileType.NHCastles, 2},
+            { TileType.Bridge, 1},
+            { TileType.BridgeShield, 2},
+            { TileType.Square, 1},
+            { TileType.Monastery, 4},
+            { TileType.MonasteryPlusRoad, 2}
+        };
 
         public Tile()
         {
