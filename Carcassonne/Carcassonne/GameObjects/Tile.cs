@@ -1,6 +1,7 @@
 ﻿using Carcassonne.Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -133,169 +134,267 @@ namespace Carcassonne.GameObjects
             {
                 for (int j = 0; j < GridSize; j++)
                 {
-                    this.sectorsGrid[i, j] = new Sector(0, null);
+                    this.sectorsGrid[i, j] = new Sector(TerrainTypeEnum.Field, null);
                 }
             }
             switch (type)
             {
-                case TileType.Road:                    
-                    for (int i = 0; i < GridSize; i++)
-                    {
-                        this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;                      
-                    }
+                case TileType.Road:
+                    InitializeVerticalRoad();
                     break;
-
                 case TileType.Turn:
-                    for (int i = 0; i < GridSize / 2; i++)
-                    {
-                        this.SectorsGrid[GridSize / 2, i].Terrain = TerrainTypeEnum.Road;
-                    }
-                    for (int i = GridSize / 2 + 1; i < GridSize; i++)
-                    {
-                        this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;
-                    }
+                    InitializeLeftTurn();
                     break;
                 case TileType.TCrossroad:
-                    for (int i = 0; i < GridSize; i++)
-                    {
-                        if (i==GridSize/2)
-                        {
-                            this.SectorsGrid[GridSize / 2, i].Terrain = TerrainTypeEnum.Crossroad;
-                        }
-                        else
-                        {
-                            this.SectorsGrid[GridSize / 2, i].Terrain = TerrainTypeEnum.Road;
-                        }
-                    }
-                    for (int i = GridSize / 2 + 1; i < GridSize; i++)
-                    {
-                        this.SectorsGrid[i, GridSize/2].Terrain = TerrainTypeEnum.Road;
-                    }
+                    InitializeTRoad();
                     break;
                 case TileType.XCrossroad:
-                    for (int i = 0; i < GridSize; i++)
-                    {
-                        this.SectorsGrid[GridSize / 2, i].Terrain = TerrainTypeEnum.Road;
-                    }
-                    for (int i = 0; i < GridSize; i++)
-                    {
-                        this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;
-                    }
+                    InitializeHorizontalRoad();
+                    InitializeVerticalRoad();
                     this.SectorsGrid[GridSize / 2, GridSize / 2].Terrain = TerrainTypeEnum.Crossroad;
                     break;
-
                 case TileType.Gate:
-                    for (int i = 0; i < GridSize; i++)
-                    {
-                        for (int j = 0; j < GridSize / 2 + 1; j++)
-                        {
-                            this.SectorsGrid[i, j].Terrain = TerrainTypeEnum.Castle;
-                        }
-                    }
-                    for (int i = GridSize / 2 + 1; i < GridSize - 1; i++)
-                    {
-                        this.SectorsGrid[i, 0].Terrain = TerrainTypeEnum.Castle;
-                        this.SectorsGrid[i, GridSize - 1].Terrain = TerrainTypeEnum.Castle;
-                    }
-                    this.SectorsGrid[GridSize - 1, 0].Terrain = TerrainTypeEnum.Wall;
-                    this.SectorsGrid[GridSize - 1, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+                    InitializeGate();
                     break;
                 case TileType.GateShield:
-                    for (int i = 0; i < GridSize; i++)
-                    {
-                        for (int j = 0; j < GridSize / 2 + 1; j++)
-                        {
-                            this.SectorsGrid[i, j].Terrain = TerrainTypeEnum.Castle;
-                        }
-                    }
-                    for (int i = GridSize / 2 + 1; i < GridSize - 1; i++)
-                    {
-                        this.SectorsGrid[i, 0].Terrain = TerrainTypeEnum.Castle;
-                        this.SectorsGrid[i, GridSize - 1].Terrain = TerrainTypeEnum.Castle;
-                    }
-                    this.SectorsGrid[GridSize - 1, 0].Terrain = TerrainTypeEnum.Wall;
-                    this.SectorsGrid[GridSize - 1, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+                    InitializeGate();
                     this.hasShield = true;
                     break;
                 case TileType.GatePlusRoad:
-                    for (int i = 0; i < GridSize; i++)
-                    {
-                        for (int j = 0; j < GridSize / 2 + 1; j++)
-                        {
-                            this.SectorsGrid[i, j].Terrain = TerrainTypeEnum.Castle;
-                        }
-                    }
-                    for (int i = GridSize / 2 + 1; i < GridSize - 1; i++)
-                    {
-                        this.SectorsGrid[i, 0].Terrain = TerrainTypeEnum.Castle;
-                        this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;
-                        this.SectorsGrid[i, GridSize - 1].Terrain = TerrainTypeEnum.Castle;
-                    }
-                    this.SectorsGrid[GridSize - 1, 0].Terrain = TerrainTypeEnum.Wall;
-                    this.SectorsGrid[GridSize - 1, GridSize / 2].Terrain = TerrainTypeEnum.Road;
-                    this.SectorsGrid[GridSize - 1, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+                    InitializeGatePlusRoad();
                     break;
                 case TileType.GateShieldPlusRoad:
-                    for (int i = 0; i < GridSize; i++)
-                    {
-                        for (int j = 0; j < GridSize / 2 + 1; j++)
-                        {
-                            this.SectorsGrid[i, j].Terrain = TerrainTypeEnum.Castle;
-                        }
-                    }
-                    for (int i = GridSize / 2 + 1; i < GridSize - 1; i++)
-                    {
-                        this.SectorsGrid[i, 0].Terrain = TerrainTypeEnum.Castle;
-                        this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;
-                        this.SectorsGrid[i, GridSize - 1].Terrain = TerrainTypeEnum.Castle;
-                    }
-                    this.SectorsGrid[GridSize - 1, 0].Terrain = TerrainTypeEnum.Wall;
-                    this.SectorsGrid[GridSize - 1, GridSize / 2].Terrain = TerrainTypeEnum.Road;
-                    this.SectorsGrid[GridSize - 1, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+                    InitializeGatePlusRoad();
                     this.hasShield = true;
                     break;
                 case TileType.DCastle:
+                    InitializeDiogonalCastle();
+                    break;
+                case TileType.DCastleShield:
+                    InitializeDiogonalCastle();
+                    this.hasShield = true;
+                    break;
+                case TileType.DCastlePlusTurn:
+                    InitializeDiogonalCastle();
+                    InitializeRightTurn();
+                    break;
+                case TileType.DCastleShieldPlusTurn:
+                    InitializeDiogonalCastle();
+                    InitializeRightTurn();
+                    this.hasShield = true;
+                    break;
+                case TileType.HCastle:
+                    InitializeHalfCastleOnTop();
+                    break;
+                case TileType.HCastlePlusTurnRight:
+                    InitializeHalfCastleOnTop();
+                    InitializeRightTurn();
+                    break;
+                case TileType.HCastlePlusTurnLeft:
+                    InitializeHalfCastleOnTop();
+                    InitializeLeftTurn();
+                    break;
+                case TileType.HCastlePlusRoad:
+                    InitializeHalfCastleOnTop();
+                    InitializeHorizontalRoad();
+                    break;
+                case TileType.HCastlePlusTCrossorad:
+                    InitializeHalfCastleOnTop();
+                    InitializeTRoad();
+                    break;
+                case TileType.OHCastles:
+                    InitializeHalfCastleOnLeft();
+                    InitializeHalfCastleOnRight();
+                    break;
+                case TileType.NHCastles:
+                    InitializeHalfCastleOnTop();
+                    InitializeHalfCastleOnRight();
+                    this.SectorsGrid[0, GridSize - 1].Terrain = TerrainTypeEnum.Castle;
+                    break;
+                case TileType.Bridge:
+                    InitializeBridge();
+                    break;
+                case TileType.BridgeShield:
+                    InitializeBridge();
+                    this.hasShield = true;
+                    break;
+                case TileType.Square:
                     for (int i = 0; i < GridSize; i++)
                     {
-                        for (int j = 0; j < GridSize - i; j++)
+                        for (int j = 0; j < GridSize; j++)
                         {
                             this.SectorsGrid[i, j].Terrain = TerrainTypeEnum.Castle;
                         }
                     }
                     break;
-                case TileType.DCastleShield:
-                    break;
-                case TileType.DCastlePlusTurn:
-                    break;
-                case TileType.DCastleShieldPlusTurn:
-                    break;
-                case TileType.HCastle:
-                    break;
-                case TileType.HCastlePlusTurnRight:
-                    break;
-                case TileType.HCastlePlusTurnLeft:
-                    break;
-                case TileType.HCastlePlusRoad:
-                    break;
-                case TileType.HCastlePlusTCrossorad:
-                    break;
-                case TileType.OHCastles:
-                    break;
-                case TileType.NHCastles:
-                    break;
-                case TileType.Bridge:
-                    break;
-                case TileType.BridgeShield:
-                    break;
-                case TileType.Square:
-                    break;
                 case TileType.Monastery:
+                    this.SectorsGrid[GridSize / 2, GridSize / 2].Terrain = TerrainTypeEnum.Monastery;
                     break;
                 case TileType.MonasteryPlusRoad:
+                    this.SectorsGrid[GridSize / 2, GridSize / 2].Terrain = TerrainTypeEnum.Monastery;
+                    for (int i = GridSize / 2 + 1; i < GridSize; i++)
+                    {
+                        this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;
+                    }
                     break;
                 default:
-                    break;
+                    throw new IndexOutOfRangeException("Illegal enum value");                    
             }
+        }
+
+        private void InitializeBridge()
+        {
+            for (int i = 1; i < GridSize - 1; i++)
+            {
+                for (int j = 0; j < GridSize; j++)
+                {
+                    this.SectorsGrid[i, j].Terrain = TerrainTypeEnum.Castle;
+                }
+            }
+            this.SectorsGrid[0, 0].Terrain = TerrainTypeEnum.Wall;
+            this.SectorsGrid[0, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+            this.SectorsGrid[GridSize - 1, 0].Terrain = TerrainTypeEnum.Wall;
+            this.SectorsGrid[GridSize - 1, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+        }
+
+        private void InitializeHalfCastleOnRight()
+        {
+            for (int i = 1; i < GridSize - 1; i++)
+            {
+                this.SectorsGrid[i, GridSize - 1].Terrain = TerrainTypeEnum.Castle;
+            }
+            this.SectorsGrid[0, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+            this.SectorsGrid[GridSize - 1, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+        }
+
+        private void InitializeHalfCastleOnLeft()
+        {
+            for (int i = 1; i < GridSize - 1; i++)
+            {
+                this.SectorsGrid[i, 0].Terrain = TerrainTypeEnum.Castle;
+            }
+            this.SectorsGrid[0, 0].Terrain = TerrainTypeEnum.Wall;
+            this.SectorsGrid[GridSize - 1, 0].Terrain = TerrainTypeEnum.Wall;
+        }
+
+        private void InitializeRightTurn()
+        {
+            for (int i = GridSize / 2; i < GridSize; i++)
+            {
+                this.SectorsGrid[GridSize / 2, i].Terrain = TerrainTypeEnum.Road;
+            }
+            for (int i = GridSize / 2 + 1; i < GridSize; i++)
+            {
+                this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;
+            }
+        }
+
+        private void InitializeDiogonalCastle()
+        {
+            for (int i = 0; i < GridSize - 1; i++)
+            {
+                for (int j = 0; j < GridSize - i - 1; j++)
+                {
+                    this.SectorsGrid[i, j].Terrain = TerrainTypeEnum.Castle;
+                }
+            }
+            this.SectorsGrid[GridSize - 1, 0].Terrain = TerrainTypeEnum.Wall;
+            this.SectorsGrid[0, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+        }
+
+        private void InitializeGatePlusRoad()
+        {
+            for (int i = 0; i < GridSize; i++)
+            {
+                for (int j = 0; j < GridSize / 2 + 1; j++)
+                {
+                    this.SectorsGrid[i, j].Terrain = TerrainTypeEnum.Castle;
+                }
+            }
+            for (int i = GridSize / 2 + 1; i < GridSize - 1; i++)
+            {
+                this.SectorsGrid[i, 0].Terrain = TerrainTypeEnum.Castle;
+                this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;
+                this.SectorsGrid[i, GridSize - 1].Terrain = TerrainTypeEnum.Castle;
+            }
+            this.SectorsGrid[GridSize - 1, 0].Terrain = TerrainTypeEnum.Wall;
+            this.SectorsGrid[GridSize - 1, GridSize / 2].Terrain = TerrainTypeEnum.Road;
+            this.SectorsGrid[GridSize - 1, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+        }
+
+        private void InitializeGate()
+        {
+            for (int i = 0; i < GridSize; i++)
+            {
+                for (int j = 0; j < GridSize / 2 + 1; j++)
+                {
+                    this.SectorsGrid[i, j].Terrain = TerrainTypeEnum.Castle;
+                }
+            }
+            for (int i = GridSize / 2 + 1; i < GridSize - 1; i++)
+            {
+                this.SectorsGrid[i, 0].Terrain = TerrainTypeEnum.Castle;
+                this.SectorsGrid[i, GridSize - 1].Terrain = TerrainTypeEnum.Castle;
+            }
+            this.SectorsGrid[GridSize - 1, 0].Terrain = TerrainTypeEnum.Wall;
+            this.SectorsGrid[GridSize - 1, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+        }
+
+        private void InitializeHorizontalRoad()
+        {
+            for (int i = 0; i < GridSize; i++)
+            {
+                this.SectorsGrid[GridSize / 2, i].Terrain = TerrainTypeEnum.Road;
+            }
+        }
+
+        private void InitializeVerticalRoad()
+        {
+            for (int i = 0; i < GridSize; i++)
+            {
+                this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;
+            }
+        }
+
+        private void InitializeTRoad()
+        {
+            for (int i = 0; i < GridSize; i++)
+            {
+                if (i == GridSize / 2)
+                {
+                    this.SectorsGrid[GridSize / 2, i].Terrain = TerrainTypeEnum.Crossroad;
+                }
+                else
+                {
+                    this.SectorsGrid[GridSize / 2, i].Terrain = TerrainTypeEnum.Road;
+                }
+            }
+            for (int i = GridSize / 2 + 1; i < GridSize; i++)
+            {
+                this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;
+            }
+        }
+
+        private void InitializeLeftTurn()
+        {
+            for (int i = 0; i < GridSize / 2; i++)
+            {
+                this.SectorsGrid[GridSize / 2, i].Terrain = TerrainTypeEnum.Road;
+            }
+            for (int i = GridSize / 2 + 1; i < GridSize; i++)
+            {
+                this.SectorsGrid[i, GridSize / 2].Terrain = TerrainTypeEnum.Road;
+            }
+        }
+
+        private void InitializeHalfCastleOnTop()
+        {
+            for (int i = 1; i < GridSize - 1; i++)
+            {
+                this.SectorsGrid[0, i].Terrain = TerrainTypeEnum.Castle;
+            }
+            this.SectorsGrid[0, 0].Terrain = TerrainTypeEnum.Wall;
+            this.SectorsGrid[0, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
         }
     }
 }
