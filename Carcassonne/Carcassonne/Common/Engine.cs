@@ -9,6 +9,7 @@ namespace Carcassonne.Common
 {
     public class Engine
     {
+        private const int RoadCalcCorrection = 1;
 
         public static bool CheckPosition(byte targetX, byte targetY, Tile playedTile)
         {
@@ -120,7 +121,6 @@ namespace Carcassonne.Common
         private int CalcRoad(Tile playedTile, ref byte startX, ref byte startY, ref byte endX, ref byte endY, ref List<Soldier> guardsLst)
         {
             Map map = GameClass.Game.Map;
-            Tile nextTile = new Tile();
             Soldier guard = new Soldier();
 
             switch (playedTile.Type)
@@ -134,123 +134,85 @@ namespace Carcassonne.Common
                     }
                     // horizontal road
                     if (playedTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
-                    {              
-                        // search to the left
-                        if (playedTile.mapX>0)
-                        {
-                            nextTile = map[playedTile.mapY, (byte)(playedTile.mapX - 1)];
-                            while (nextTile != null &&
-                                   nextTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize - 1].Terrain == TerrainTypeEnum.Road)
-                            {
-                                return CalcRoad(nextTile, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
-                            }
-                        }
-                        // search to the right
-                        if (playedTile.mapX < Map.Size-1)
-                        {
-                            nextTile = map[playedTile.mapY, (byte)(playedTile.mapX + 1)];
-                            while (nextTile != null &&
-                                   nextTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
-                            {
-                                return CalcRoad(nextTile, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
-                            }
-                        }
-                    }
-                    // vertical road
-                    else
                     {
-                        // search to the top
-                        if (playedTile.mapY > 0)
-                        {
-                            nextTile = map[(byte)(playedTile.mapY-1), playedTile.mapX];
-                            while (nextTile != null &&
-                                   nextTile.SectorsGrid[Tile.GridSize-1, Tile.GridSize / 2].Terrain == TerrainTypeEnum.Road)
-                            {
-                                return CalcRoad(nextTile, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
-                            }
-                        }
-                        // search to the bottom
-                        if (playedTile.mapY < Map.Size - 1)
-                        {
-                            nextTile = map[(byte)(playedTile.mapY+1), playedTile.mapX];
-                            while (nextTile != null &&
-                                   nextTile.SectorsGrid[0, Tile.GridSize / 2].Terrain == TerrainTypeEnum.Road)
-                            {
-                                return CalcRoad(nextTile, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
-                            }
-                        }
+                        return SearchRoadLeft(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) +
+                               SearchRoadRight(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) - RoadCalcCorrection;                       
+                    }                                                                                                        
+                    // vertical road                                                                                         
+                    else                                                                                                     
+                    {                                                                                                        
+                        return SearchRoadTop(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) +   
+                               SearchRoadBottom(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) -RoadCalcCorrection;
                     }
                     break;
                 case TileType.Turn:
+                case TileType.HCastlePlusTurnLeft:
                     guard = playedTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize / 2].OccupiedBy;
                     if (guard != null)
                     {
                         guardsLst.Add(guard);
                     }
-                    // left turn
-                    if (playedTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
+                    switch (playedTile.Orientation)
                     {
-
+                        case 0:  //bottom left turn
+                                 return SearchRoadLeft(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) +
+                                        SearchRoadBottom(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) - RoadCalcCorrection;
+                            break;
+                        case 1: // top left turn
+                            return SearchRoadLeft(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) +
+                                   SearchRoadTop(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) - RoadCalcCorrection;
+                            break;
+                        case 2:  //top right turn
+                            return SearchRoadRight(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) +
+                                   SearchRoadTop(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) - RoadCalcCorrection;
+                            break;
+                        case 3: // bottom right turn
+                            return SearchRoadRight(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) +
+                                   SearchRoadBottom(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) - RoadCalcCorrection;
+                            break;
                     }
-                    //right turn
-                    else if (playedTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
-                    {
+                    break;
+                case TileType.HCastlePlusTurnRight:
+                case TileType.DCastlePlusTurn:
+                case TileType.DCastleShieldPlusTurn:
 
+                    guard = playedTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize / 2].OccupiedBy;
+                    if (guard != null)
+                    {
+                        guardsLst.Add(guard);
                     }
-                    //top turn
-                    else if (playedTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
+                    switch (playedTile.Orientation)
                     {
-
-                    }
-                    // bottom turn
-                    else
-                    {
-
+                        case 0:  //bottom right turn
+                            return SearchRoadRight(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) +
+                                   SearchRoadBottom(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) - RoadCalcCorrection;
+                            break;
+                        case 1: // bottom left turn
+                            return SearchRoadLeft(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) +
+                                        SearchRoadBottom(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) - RoadCalcCorrection;
+                            break;
+                        case 2:  //top left turn
+                            return SearchRoadLeft(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) +
+                                   SearchRoadTop(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) - RoadCalcCorrection;
+                            break;
+                        case 3: // top right turn
+                            return SearchRoadRight(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) +
+                                   SearchRoadTop(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst) - RoadCalcCorrection;
+                            break;
                     }
                     break;
                 case TileType.TCrossroad:
+
                     break;
                 case TileType.XCrossroad:
                     break;
-                case TileType.Gate:
-                    break;
-                case TileType.GateShield:
-                    break;
                 case TileType.GatePlusRoad:
-                    break;
                 case TileType.GateShieldPlusRoad:
-                    break;
-                case TileType.DCastle:
-                    break;
-                case TileType.DCastleShield:
-                    break;
-                case TileType.DCastlePlusTurn:
-                    break;
-                case TileType.DCastleShieldPlusTurn:
-                    break;
-                case TileType.HCastle:
-                    break;
-                case TileType.HCastlePlusTurnRight:
-                    break;
-                case TileType.HCastlePlusTurnLeft:
-                    break;
-                case TileType.HCastlePlusRoad:
-                    break;
-                case TileType.HCastlePlusTCrossorad:
-                    break;
-                case TileType.OHCastles:
-                    break;
-                case TileType.NHCastles:
-                    break;
-                case TileType.Bridge:
-                    break;
-                case TileType.BridgeShield:
-                    break;
-                case TileType.Square:
-                    break;
-                case TileType.Monastery:
+
+
                     break;
                 case TileType.MonasteryPlusRoad:
+
                     break;
                 default:
                     break;
@@ -266,5 +228,83 @@ namespace Carcassonne.Common
         }
 
 
+        private int SearchRoadLeft(Tile playedTile, Map map, ref byte startX, ref byte startY, ref byte endX, ref byte endY, ref List<Soldier> guardsLst)
+        {
+            if (playedTile.mapX > 0)
+            {
+                Tile nextTile = new Tile();
+                nextTile = map[playedTile.mapY, (byte)(playedTile.mapX - 1)];
+                while (nextTile != null &&
+                       nextTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize - 1].Terrain == TerrainTypeEnum.Road)
+                {
+                    return CheckCenterSector(nextTile, ref startX, ref startY, ref endX, ref endY, ref startX, ref startY, ref guardsLst);
+                }
+            }
+            return 1;
+        }      
+
+        private int SearchRoadRight(Tile playedTile, Map map, ref byte startX, ref byte startY, ref byte endX, ref byte endY, ref List<Soldier> guardsLst)
+        {
+            if (playedTile.mapX < Map.Size - 1)
+            {
+                Tile nextTile = new Tile();
+                nextTile = map[playedTile.mapY, (byte)(playedTile.mapX + 1)];
+                while (nextTile != null &&
+                       nextTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Road)
+                {
+                    return CheckCenterSector(nextTile, ref startX, ref startY, ref endX, ref endY, ref endX, ref endY, ref guardsLst);
+                }
+            }
+            return 1;
+        }
+
+        private int SearchRoadTop(Tile playedTile, Map map, ref byte startX, ref byte startY, ref byte endX, ref byte endY, ref List<Soldier> guardsLst)
+        {
+            if (playedTile.mapY > 0)
+            {
+                Tile nextTile = new Tile();
+                nextTile = map[(byte)(playedTile.mapY-1), playedTile.mapX];
+                while (nextTile != null &&
+                       nextTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize - 1].Terrain == TerrainTypeEnum.Road)
+                {
+                    return CheckCenterSector(nextTile, ref startX, ref startY, ref endX, ref endY, ref startX, ref startY, ref guardsLst);
+                }
+            }
+            return 1;
+        }
+
+        private int SearchRoadBottom(Tile playedTile, Map map, ref byte startX, ref byte startY, ref byte endX, ref byte endY, ref List<Soldier> guardsLst)
+        {
+            if (playedTile.mapY < Tile.GridSize-1)
+            {
+                Tile nextTile = new Tile();
+                nextTile = map[(byte)(playedTile.mapY + 1), playedTile.mapX];
+                while (nextTile != null &&
+                       nextTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize - 1].Terrain == TerrainTypeEnum.Road)
+                {
+                    return CheckCenterSector(nextTile, ref startX, ref startY, ref endX, ref endY, ref endX, ref endY, ref guardsLst);
+                }
+            }
+            return 1;
+        }
+
+        private int CheckCenterSector(Tile nextTile, ref byte startX, ref byte startY, ref byte endX, ref byte endY, ref byte pX, ref byte pY,
+                                      ref List<Soldier> guardsLst)
+        {
+            if (nextTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize / 2].Terrain == TerrainTypeEnum.Road)
+            {
+                return CalcRoad(nextTile, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+            }
+            else
+            // end of road
+            {
+                pX = nextTile.mapX;
+                pY = nextTile.mapY;
+                return 1;
+            }
+        }
     }
+
+
 }
+
