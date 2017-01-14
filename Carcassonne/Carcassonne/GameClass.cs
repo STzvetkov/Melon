@@ -19,10 +19,14 @@ namespace Carcassonne
     {
         private static GameClass game;
         private Map map;
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
 
-       
+        //user input detection
+        private KeyboardState currentKeyboardState;
+        private KeyboardState newKeyboardState;
+        private MouseState currentMouseState;
+        private MouseState newMouseState;
 
         private GameClass()
         {
@@ -58,6 +62,10 @@ namespace Carcassonne
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            this.currentKeyboardState = Keyboard.GetState();
+            this.currentMouseState = Mouse.GetState();
+            this.newKeyboardState = Keyboard.GetState();
+            this.newMouseState = Mouse.GetState();
 
             base.Initialize();
         }
@@ -69,7 +77,7 @@ namespace Carcassonne
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }
