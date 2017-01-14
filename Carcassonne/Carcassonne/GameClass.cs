@@ -104,6 +104,10 @@ namespace Carcassonne
             }
 
             // TODO: Add your update logic here
+            this.currentKeyboardState = this.newKeyboardState;
+            this.newKeyboardState = Keyboard.GetState();
+            this.currentMouseState = this.newMouseState;
+            this.newMouseState = Mouse.GetState();
 
             base.Update(gameTime);
         }
