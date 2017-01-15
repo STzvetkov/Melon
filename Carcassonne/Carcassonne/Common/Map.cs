@@ -11,9 +11,19 @@ namespace Carcassonne.Common
     {
         public const byte Size = 200;
 
-        private Tile[,] tiles;
+        private Tile[,] tiles = new Tile[Size, Size];
 
 
+        public Map()
+        {
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    this.tiles[i, j] = null;
+                }
+            }
+        }
 
 
         public Tile this[byte x, byte y]
