@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using Carcassonne.Common;
 using Carcassonne.Constants;
 
@@ -27,6 +28,8 @@ namespace Carcassonne
         private KeyboardState newKeyboardState;
         private MouseState currentMouseState;
         private MouseState newMouseState;
+        //background Music
+        private Song backgroundMusic;
 
         private GameClass()
         {
@@ -78,7 +81,8 @@ namespace Carcassonne
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            //backgroundMusic = Content.Load<Song>("CarcassonneBackground");
+            //MediaPlayer.Play(backgroundMusic);
             // TODO: use this.Content to load your game content here
         }
 
