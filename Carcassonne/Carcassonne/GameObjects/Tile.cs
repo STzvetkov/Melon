@@ -19,8 +19,6 @@ namespace Carcassonne.GameObjects
         private bool hasShield;
         private int orientataion;
 
-
-
         public static Dictionary<TileType, byte> numberOfTileType = new Dictionary<TileType, byte>
         {
             { TileType.Road, 8 },
@@ -241,7 +239,7 @@ namespace Carcassonne.GameObjects
                     throw new IndexOutOfRangeException("Illegal enum value");                    
             }
         }
-
+       
         private void InitializeBridge()
         {
             for (int i = 1; i < GridSize - 1; i++)
@@ -395,6 +393,54 @@ namespace Carcassonne.GameObjects
             }
             this.SectorsGrid[0, 0].Terrain = TerrainTypeEnum.Wall;
             this.SectorsGrid[0, GridSize - 1].Terrain = TerrainTypeEnum.Wall;
+        }
+
+        private List<Soldier> GetSoldiers(TerrainTypeEnum terrain)
+        {
+            List<Soldier> soldiers = new List<Soldier>();
+            if (terrain == TerrainTypeEnum.Field)
+            {
+                AddSoldiersInList(soldiers);
+            }
+            else if (terrain == TerrainTypeEnum.Castle)
+            {
+                AddSoldiersInList(soldiers);
+            }
+            else if (terrain == TerrainTypeEnum.Road)
+            {
+                AddSoldiersInList(soldiers);
+            }
+            else if (terrain == TerrainTypeEnum.Monastery)
+            {
+                AddSoldiersInList(soldiers);
+            }
+            else
+            {
+                throw new InvalidOperationException("The soldier can only be placed in a field, road, castle or monastery");
+            }
+            return soldiers;
+        }
+
+        private void AddSoldiersInList(List<Soldier> soldiers)
+        {
+            for (int i = 0; i < GridSize; i++)
+            {
+                for (int j = 0; j < GridSize; j++)
+                {
+                    if (this.SectorsGrid[i, j].OccupiedBy != null)
+                    {
+                        Soldier guard = new Soldier();
+                        guard = this.SectorsGrid[i, j].OccupiedBy;
+                        soldiers.Add(guard);
+                    }
+                }
+            }
+        }
+
+        private bool PlaceSoldier(Soldier soldier, byte row, byte col)
+        {
+            //TODO check if soldier can be placed
+            return false;
         }
     }
 }
