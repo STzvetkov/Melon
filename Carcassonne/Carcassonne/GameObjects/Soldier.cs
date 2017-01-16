@@ -37,5 +37,20 @@ namespace Carcassonne.GameObjects
         }
 
         //TODO: Add constructor
+
+        public Soldier()
+        {
+
+        }
+        public Soldier(bool isActive)
+        {
+            this.isActive = IsActive;
+        }
+        public Soldier(bool isActive, bool isFermer, int playerColor)
+        {
+            this.isActive = IsActive;
+            this.isFermer = IsFermer;
+            this.playerColorId = PlayerColorID;
+        }
     }
 }
