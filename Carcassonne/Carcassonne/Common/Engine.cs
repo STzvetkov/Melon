@@ -229,37 +229,41 @@ namespace Carcassonne.Common
                     }
                     break;
                 case TileType.TCrossroad:
-                    // check left
-
-                    break;
                 case TileType.XCrossroad:
                     // check left
-                    guard = playedTile.SectorsGrid[Tile.GridSize / 2, 0].OccupiedBy;
-                    if (guard != null)
+                    switch (direction)
                     {
-                        guardsLst.Add(guard);
+                        case "left":
+                            return SearchRoadLeft(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+                        case "right":
+                            return SearchRoadRight(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+                        case "top":
+                            return SearchRoadTop(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+                        case "bottom":
+                            return SearchRoadBottom(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
                     }
                     break;
                 case TileType.GatePlusRoad:
                 case TileType.GateShieldPlusRoad:
-
-
-                    break;
                 case TileType.MonasteryPlusRoad:
-
-                    break;
-                default:
+                    switch (playedTile.Orientation)
+                    {
+                        case 0:
+                            return SearchRoadBottom(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+                        case 1:
+                            return SearchRoadLeft(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+                        case 2:
+                            return SearchRoadTop(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+                        case 3:
+                            return SearchRoadRight(playedTile, map, ref startX, ref startY, ref endX, ref endY, ref guardsLst);
+                    }
                     break;
             }
 
             return 1;
         }
 
-        private int CalcCastle(Tile playedTile)
-        {
-
-            return 0;
-        }
+       
 
 
         private int SearchRoadLeft(Tile playedTile, Map map, ref byte startX, ref byte startY, ref byte endX, ref byte endY, ref List<Soldier> guardsLst)
@@ -364,6 +368,90 @@ namespace Carcassonne.Common
                 pY = nextTile.mapY;
                 return 1;
             }
+        }
+
+        private int CalcCastle(Tile playedTile, string direction, ref List<Soldier> guardsLst)
+        {
+            Map map = GameClass.Game.Map;
+            Soldier guard = new Soldier();
+
+            switch (playedTile.Type)
+            {
+
+                case TileType.Gate:
+                case TileType.GateShield:
+                case TileType.GatePlusRoad:
+                case TileType.GateShieldPlusRoad:
+                case TileType.Bridge:
+                case TileType.BridgeShield:
+                    map[playedTile.mapY, playedTile.mapX].IsVisited = true;
+                    guard = playedTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize / 2].OccupiedBy;
+                    if (guard != null)
+                    {
+                        guardsLst.Add(guard);
+                    }
+                    // check left
+                    if (playedTile.mapX > 0)
+                    {
+                        Tile nextTile = new Tile();
+                        nextTile = map[playedTile.mapY, (byte)(playedTile.mapX - 1)];
+                        if (nextTile != null && !nextTile.IsVisited &&
+                               nextTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize - 1].Terrain == TerrainTypeEnum.Castle)
+                        {
+                            return CalcCastle(nextTile, "left", ref guardsLst);
+                        }
+                        else
+                        {
+                            
+                            if (playedTile.HasShield)
+                            {
+                                return 2;
+                            }
+                            else
+                            {
+                                return 4;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                    break;
+                case TileType.DCastle:
+                    break;
+                case TileType.DCastleShield:
+                    break;
+                case TileType.DCastlePlusTurn:
+                    break;
+                case TileType.DCastleShieldPlusTurn:
+                    break;
+                case TileType.HCastle:
+                    break;
+                case TileType.HCastlePlusTurnRight:
+                    break;
+                case TileType.HCastlePlusTurnLeft:
+                    break;
+                case TileType.HCastlePlusRoad:
+                    break;
+                case TileType.HCastlePlusTCrossorad:
+                    break;
+                case TileType.OHCastles:
+                    break;
+                case TileType.NHCastles:
+                    break;
+
+                case TileType.Square:
+                    break;
+                case TileType.Monastery:
+                    break;
+                case TileType.MonasteryPlusRoad:
+                    break;
+                default:
+                    break;
+            }
+
+            return 0;
         }
     }
 

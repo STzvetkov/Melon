@@ -72,6 +72,7 @@
     <Compile Include="Common\GameStateEnum.cs" />
     <Compile Include="Common\Map.cs" />
     <Compile Include="Common\Player.cs" />
+    <Compile Include="Common\PlayerColourEnum.cs" />
     <Compile Include="Common\SavedGame.cs" />
     <Compile Include="Common\Sector.cs" />
     <Compile Include="Common\TerrainTypeEnum.cs" />

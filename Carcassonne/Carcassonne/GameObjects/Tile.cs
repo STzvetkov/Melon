@@ -16,6 +16,7 @@ namespace Carcassonne.GameObjects
         private TileType type;
         private bool isRevealed;
         private bool isPlayed;
+        private bool isVisited;
         private bool hasShield;
         private int orientataion;
 
@@ -59,6 +60,7 @@ namespace Carcassonne.GameObjects
             this.orientataion = 0;
             this.hasShield = false;
             this.isPlayed = false;
+            this.isVisited = false;
             this.isRevealed = false;
         }
 
@@ -86,6 +88,30 @@ namespace Carcassonne.GameObjects
             set
             {
                 this.sectorsGrid = value;
+            }
+        }
+
+        public bool IsVisited
+        {
+            get
+            {
+                return this.isVisited;
+            }
+            set
+            {
+                this.isVisited = value;
+            }
+        }
+
+        public bool HasShield
+        {
+            get
+            {
+                return this.hasShield;
+            }
+            set
+            {
+                this.hasShield = value;
             }
         }
 
