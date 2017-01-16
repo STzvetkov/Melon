@@ -465,6 +465,10 @@ namespace Carcassonne.GameObjects
 
         private bool PlaceSoldier(Soldier soldier, byte row, byte col)
         {
+            if (this.SectorsGrid[row, col].OccupiedBy != null)
+            {
+                return false;
+            }
             //TODO check if soldier can be placed
             return false;
         }

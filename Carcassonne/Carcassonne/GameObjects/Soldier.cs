@@ -40,17 +40,21 @@ namespace Carcassonne.GameObjects
 
         public Soldier()
         {
-
+            this.isActive = false;
+            this.isFermer = false;
+            this.playerColorId = 0;
         }
-        public Soldier(bool isActive)
+        public Soldier(bool initIsActive)
         {
-            this.isActive = IsActive;
+            this.isActive = initIsActive;
+            this.isFermer = false;
+            this.playerColorId = 0;
         }
-        public Soldier(bool isActive, bool isFermer, int playerColor)
+        public Soldier(bool initIsActive, bool initIsFermer, int initPlayerColorID)
         {
-            this.isActive = IsActive;
-            this.isFermer = IsFermer;
-            this.playerColorId = PlayerColorID;
+            this.isActive = initIsActive;
+            this.isFermer = initIsFermer;
+            this.playerColorId = initPlayerColorID;
         }
     }
 }
