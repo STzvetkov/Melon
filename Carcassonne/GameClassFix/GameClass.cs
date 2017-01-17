@@ -219,8 +219,9 @@
                     this.spriteBatch.Draw(this.menuBackground, this.backgroundRect, Color.White);
                     break;
                     spriteBatch.End();
-            base.Draw(gameTime);
-        }
+                    base.Draw(gameTime);
+            }
 
+        }
     }
 }
