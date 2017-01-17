@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Carcassonne.Common.EndGameArguments" Collapsed="true">
+    <Position X="11.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAABAAIAAAIAA=</HashCode>
+      <FileName>Common\EndGameArguments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.Common.EndGameHandler" Collapsed="true">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\EndGameHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.Common.Engine" Collapsed="true">
+    <Position X="11.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEWJQAAAAAAAAAQACAAAAAAAEAAIAEAAAAA=</HashCode>
+      <FileName>Common\Engine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.Common.Map" Collapsed="true">
+    <Position X="9.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAACAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.Common.Player" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAgAAgwAAAAIAAwAAAJMAgAAIAAAACAAAAg=</HashCode>
+      <FileName>Common\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Carcassonne.Common.SavedGame" Collapsed="true">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\SavedGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.GameObjects.Creature" Collapsed="true">
+    <Position X="20.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Creature.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.GameObjects.Dragon" Collapsed="true">
+    <Position X="19.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Dragon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.GameObjects.Fairy" Collapsed="true">
+    <Position X="21.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Fairy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.GameObjects.MapObjects" Collapsed="true">
+    <Position X="22.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAA=</HashCode>
+      <FileName>GameObjects\MapObjects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.GameObjects.Menu" Collapsed="true">
+    <Position X="19.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.GameObjects.Pawn" Collapsed="true">
+    <Position X="21.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Pawn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.GameObjects.ScoreBoard" Collapsed="true">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\ScoreBoard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.GameObjects.ScreenObject" Collapsed="true">
+    <Position X="20.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY=</HashCode>
+      <FileName>GameObjects\ScreenObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.GameObjects.Soldier" Collapsed="true">
+    <Position X="22.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAEAAAAAAAAAAEAAAAhAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>GameObjects\Soldier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.GameObjects.Tile" Collapsed="true">
+    <Position X="24.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YYADUAAAAwAgAAACAACAEQAAEgChAARAgZASAAIAEAA=</HashCode>
+      <FileName>GameObjects\Tile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.Interfaces.IMovable" Collapsed="true">
+    <Position X="13.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IMovable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.Menu.MenuItem" Collapsed="true">
+    <Position X="19.25" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAQAAAAgAAAAAAAAAAAAAAQICAAAAAgAAAAAA=</HashCode>
+      <FileName>Menu\MenuItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Carcassonne.Program" Collapsed="true">
+    <Position X="16.5" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Carcassonne.UseOtherGameClass" Collapsed="true">
+    <Position X="20.75" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAABAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>UseOtherGameClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Carcassonne.Common.Sector" Collapsed="true">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Common\Sector.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="Carcassonne.Interfaces.IClickable" Collapsed="true">
+    <Position X="15.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAgAAAAEAAAAAAY=</HashCode>
+      <FileName>Interfaces\IClickable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Carcassonne.Interfaces.IDrawable" Collapsed="true">
+    <Position X="16" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAgAAAAAAAAAAAgAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDrawable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Carcassonne.Interfaces.IGameObject" Collapsed="true">
+    <Position X="13.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IGameObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Carcassonne.Interfaces.IMenuItem" Collapsed="true">
+    <Position X="13.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAIAAAAAAgAAAAAA=</HashCode>
+      <FileName>Interfaces\IMenuItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Carcassonne.Interfaces.IPlayer" Collapsed="true">
+    <Position X="15.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Carcassonne.Interfaces.ISprite" Collapsed="true">
+    <Position X="13.25" Y="6.75" Width="1.5" />
+    <InheritanceLine Type="Carcassonne.Interfaces.IDrawable" FixedToPoint="true">
+      <Path>
+        <Point X="16.75" Y="6.75" />
+        <Point X="16.75" Y="6.375" />
+        <Point X="14.75" Y="6.375" />
+        <Point X="14.75" Y="6.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAQ=</HashCode>
+      <FileName>Interfaces\ISprite.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Carcassonne.Common.GameState" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAEAAEAAAAQABAAIAAAAIAAAAAAAAAQ=</HashCode>
+      <FileName>Common\GameStateEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Carcassonne.Common.PlayerColourEnum" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAADAAAAA=</HashCode>
+      <FileName>Common\PlayerColourEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Carcassonne.Common.TerrainTypeEnum" Collapsed="true">
+    <Position X="9.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAIAAAAAgAAAQAAAQAAAAAAAAAgAA=</HashCode>
+      <FileName>Common\TerrainTypeEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Carcassonne.Common.TileType" Collapsed="true">
+    <Position X="9.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EABAAIAAAAABiAAAIAAChChACgwCAAgAAAAkAAgCAAA=</HashCode>
+      <FileName>Common\TileType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

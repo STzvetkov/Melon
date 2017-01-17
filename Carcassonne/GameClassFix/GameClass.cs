@@ -269,8 +269,9 @@
                     break;
             }
                     spriteBatch.End();
-            base.Draw(gameTime);
-        }
+                    base.Draw(gameTime);
+            }
 
+        }
     }
 }

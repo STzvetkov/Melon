@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.GameObjects
 {
-    class Menu
+    class Menu:ScreenObject
     {
     }
 }

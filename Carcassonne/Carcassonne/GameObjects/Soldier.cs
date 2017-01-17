@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.GameObjects
 {
-    public class Soldier :Creature
+    public class Soldier :Pawn
     {
         private bool isActive;
         private bool isFermer;

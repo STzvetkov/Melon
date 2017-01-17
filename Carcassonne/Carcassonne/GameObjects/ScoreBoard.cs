@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.GameObjects
 {
-    class ScoreBoard
+    class ScoreBoard:ScreenObject
     {
     }
 }
