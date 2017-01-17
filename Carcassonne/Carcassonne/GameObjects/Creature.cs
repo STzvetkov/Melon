@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.GameObjects
 {
-    public abstract class Creature
+    public abstract class Creature:Pawn
     {
     }
 }

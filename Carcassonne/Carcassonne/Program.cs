@@ -9,18 +9,18 @@ namespace Carcassonne
 #if WINDOWS || LINUX
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        ///<summary>
+        ///The main entry point for the application.
+        ///</summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //initializing and starting game -> u can comment it out.
-            using (var game = GameClass.Game)
+            //Start the project through the other solution
+            using (var game = UseOtherGameClass.Game)
             {
-                game.Run();
+                //game.Run();
             }
         }
     }
