@@ -9,10 +9,12 @@
     using Microsoft.Xna.Framework.Audio;
     using Carcassonne.Common;
     using Carcassonne.Constants;
+    using Carcassonne;
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public sealed class GameClass : Carcassonne.UseOtherGameClass
+    public sealed class GameClass : Game
     {
         private static GameClass game;
         private GraphicsDeviceManager graphics;
@@ -74,8 +76,9 @@
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
-            //backgroundMusic = Content.Load<Song>("CarcassonneBackground");
-            //MediaPlayer.Play(backgroundMusic);
+            backgroundMusic = Content.Load<Song>("CarcassonneBackground");
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.IsRepeating = true;
             // TODO: use this.Content to load your game content here
         }
 
@@ -95,7 +98,7 @@
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
