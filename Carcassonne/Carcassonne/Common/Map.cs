@@ -44,5 +44,19 @@ namespace Carcassonne.Common
                 return result;
             }
         }
+
+        public void ResetVisited()
+        {
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    if (this.tiles[i, j] != null)
+                    {
+                        this.tiles[i, j].IsVisited = false;
+                    }                  
+                }
+            }
+        }
     }
 }
