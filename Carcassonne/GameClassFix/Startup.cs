@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace GameClassFix
+﻿namespace GameClassFix
 {
+    using System;
+    using System.Windows.Forms;
+
 #if WINDOWS || LINUX
     /// <summary>
     /// The main class.

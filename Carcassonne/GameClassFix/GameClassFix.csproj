@@ -57,8 +57,10 @@
     <StartupObject>GameClassFix.Startup</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DebugSprite.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="GameClass.cs" />
+    <Compile Include="Sprite.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

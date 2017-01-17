@@ -1,4 +1,4 @@
-﻿namespace Carcassonne
+﻿namespace GameClassFix
 {
     using System;
     using System.Collections.Generic;
@@ -7,21 +7,21 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
+    using Carcassonne.Interfaces;
 
     public static class Deck
     {
 
         #region Declarations
 
-        public static List<Texture2D> textures = new List<Texture2D>();
-        public static Texture2D soldier;
-        public static int texturesNo;
+        private static List<Texture2D> textures = new List<Texture2D>();
+        private static Texture2D soldier;
+        private static int texturesNumber;
 
 
         #endregion
 
         #region Initialize
-
         public static void Initialize(ContentManager content)
         {
             textures.Add(content.Load<Texture2D>(@"city1"));
@@ -48,7 +48,7 @@
             textures.Add(content.Load<Texture2D>(@"road3"));
             textures.Add(content.Load<Texture2D>(@"road4"));
             soldier = (content.Load<Texture2D>(@"Soldier"));
-            texturesNo = 23;
+            texturesNumber = 23;
         }
         #endregion
 
@@ -58,7 +58,7 @@
         {
             Random rand = new Random();
 
-            int x = rand.Next(0, texturesNo);
+            int x = rand.Next(0, texturesNumber);
 
             return textures[x];
         }

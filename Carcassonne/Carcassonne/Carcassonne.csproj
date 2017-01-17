@@ -78,6 +78,7 @@
     <Compile Include="Common\TerrainTypeEnum.cs" />
     <Compile Include="Common\TileType.cs" />
     <Compile Include="Constants\CommonConstants.cs" />
+    <Compile Include="Interfaces\ISprite.cs" />
     <Compile Include="UseOtherGameClass.cs" />
     <Compile Include="GameObjects\Creature.cs" />
     <Compile Include="GameObjects\Dragon.cs" />

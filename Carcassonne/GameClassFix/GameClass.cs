@@ -27,6 +27,8 @@
         private MouseState newMouseState;
         //background Music
         private Song backgroundMusic;
+        //tiles
+        private Sprite startTile;
 
         private GameClass()
         {
@@ -59,11 +61,18 @@
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            this.Services.AddService(typeof(GraphicsDeviceManager), this.graphics);
+            this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
+            this.Services.AddService(typeof(SpriteBatch), this.spriteBatch);
+            //single click capture
             this.currentKeyboardState = Keyboard.GetState();
             this.currentMouseState = Mouse.GetState();
             this.newKeyboardState = Keyboard.GetState();
             this.newMouseState = Mouse.GetState();
+            //deck initialization
+            Deck.Initialize(Content);
+            //starting tile
+            this.startTile = new Sprite(new Vector2((CommonConstants.windowWidth / 2) - CommonConstants.tileSize / 2, (CommonConstants.windowHeight / 2) - CommonConstants.tileSize / 2));
 
             base.Initialize();
         }

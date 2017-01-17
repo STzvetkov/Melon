@@ -11,5 +11,6 @@ namespace Carcassonne.Constants
         //Game window size
         public static readonly int windowWidth = 800;
         public static readonly int windowHeight = 600;
+        public static readonly int tileSize = 90;
     }
 }
