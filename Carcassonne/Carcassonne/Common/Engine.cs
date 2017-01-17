@@ -15,7 +15,7 @@ namespace Carcassonne.Common
         {
             byte checkedWithX, checkedWithY;
             Tile checkedWithTile;
-            Map map = GameClass.Game.Map;
+            Map map = UseOtherGameClass.Game.Map;
             //Check top tile            
             if (targetY > 0)
             {
@@ -120,7 +120,7 @@ namespace Carcassonne.Common
 
         private int CalcRoad(Tile playedTile, string direction, ref byte startX, ref byte startY, ref byte endX, ref byte endY, ref List<Soldier> guardsLst)
         {
-            Map map = GameClass.Game.Map;
+            Map map = UseOtherGameClass.Game.Map;
             Soldier guard = new Soldier();
 
             switch (playedTile.Type)
@@ -372,7 +372,7 @@ namespace Carcassonne.Common
 
         private int CalcCastle(Tile playedTile, string direction, ref List<Soldier> guardsLst)
         {
-            Map map = GameClass.Game.Map;
+            Map map = UseOtherGameClass.Game.Map;
             Soldier guard = new Soldier();
 
             switch (playedTile.Type)
