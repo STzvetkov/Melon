@@ -109,31 +109,13 @@ namespace Carcassonne.Common
             return 0;
         }
 
-        private int CalcMonastery(Tile playedTile)
+        private int CalcMonastery(Tile playedTile, Tile monasteryTile)
         {
-            Map map = UseOtherGameClass.Game.Map;
-            Tile neighbour = new Tile();
-            int accumulatedResult = 0;
             if (playedTile.mapX == monasteryTile.mapX && playedTile.mapY == monasteryTile.mapY)
             {
-                for (int i = -1; i < 1; i++)
-                {
-                    for (int j = -1; j < 1; j++)
-                    {
-                        if (playedTile.mapX + j>=0 && playedTile.mapX+j<Map.Size-1 &&
-                            playedTile.mapY + i >= 0 && playedTile.mapX + i < Map.Size - 1 &&
-                            (i!=0 ||j!=0))
-                        {
-                            neighbour = map[(byte)(playedTile.mapY + i), (byte)(playedTile.mapX + j)];
-                            if (neighbour!=null)
-                            {
-                                accumulatedResult++;
-                            }
-                        }
-                    }
-                }
+
             }
-            return accumulatedResult;
+            return 0;
         }
 
         private int CalcRoad(Tile playedTile, string direction, ref byte startX, ref byte startY, ref byte endX, ref byte endY, ref List<Soldier> guardsLst)
@@ -393,8 +375,6 @@ namespace Carcassonne.Common
             Map map = UseOtherGameClass.Game.Map;
             Soldier guard = new Soldier();
 
-            map[playedTile.mapY, playedTile.mapX].IsVisited = true; // mark tiles we have already been to
-
             switch (playedTile.Type)
             {
 
@@ -404,65 +384,40 @@ namespace Carcassonne.Common
                 case TileType.GateShieldPlusRoad:
                 case TileType.Bridge:
                 case TileType.BridgeShield:
+                    map[playedTile.mapY, playedTile.mapX].IsVisited = true;
                     guard = playedTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize / 2].OccupiedBy;
                     if (guard != null)
                     {
                         guardsLst.Add(guard);
                     }
-                    int accumulatedValue = 0;
-                    if (playedTile.HasShield)
-                    {
-                        accumulatedValue = 2;
-                    }
-                    else
-                    {
-                        accumulatedValue = 4;
-                    }
                     // check left
-                    if (playedTile.mapX > 0 && direction!="right" )  //avoid going back to previous tile
+                    if (playedTile.mapX > 0)
                     {
                         Tile nextTile = new Tile();
                         nextTile = map[playedTile.mapY, (byte)(playedTile.mapX - 1)];
                         if (nextTile != null && !nextTile.IsVisited &&
                                nextTile.SectorsGrid[Tile.GridSize / 2, Tile.GridSize - 1].Terrain == TerrainTypeEnum.Castle)
                         {
-                            accumulatedValue += CalcCastle(nextTile, "left", ref guardsLst);
+                            return CalcCastle(nextTile, "left", ref guardsLst);
                         }
-                    }
-                    //check right
-                    if (playedTile.mapX < Map.Size - 1 && direction != "left")
-                    {
-                        Tile nextTile = new Tile();
-                        nextTile = map[playedTile.mapY, (byte)(playedTile.mapX + 1)];
-                        if (nextTile != null && !nextTile.IsVisited &&
-                               nextTile.SectorsGrid[Tile.GridSize / 2, 0].Terrain == TerrainTypeEnum.Castle)
+                        else
                         {
-                            accumulatedValue += CalcCastle(nextTile, "right", ref guardsLst);
+                            
+                            if (playedTile.HasShield)
+                            {
+                                return 2;
+                            }
+                            else
+                            {
+                                return 4;
+                            }
                         }
                     }
-                    // check top
-                    if (playedTile.mapY > 0 && direction != "bottom")
+                    else
                     {
-                        Tile nextTile = new Tile();
-                        nextTile = map[(byte)(playedTile.mapY - 1), playedTile.mapX];
-                        if (nextTile != null && !nextTile.IsVisited &&
-                               nextTile.SectorsGrid[Tile.GridSize -1 , Tile.GridSize/2].Terrain == TerrainTypeEnum.Castle)
-                        {
-                            accumulatedValue += CalcCastle(nextTile, "top", ref guardsLst);
-                        }
+                        return 0;
                     }
-                    // check bottom
-                    if (playedTile.mapY > 0 && direction != "top")
-                    {
-                        Tile nextTile = new Tile();
-                        nextTile = map[(byte)(playedTile.mapY - 1), playedTile.mapX];
-                        if (nextTile != null && !nextTile.IsVisited &&
-                               nextTile.SectorsGrid[0, Tile.GridSize / 2].Terrain == TerrainTypeEnum.Castle)
-                        {
-                            accumulatedValue += CalcCastle(nextTile, "bottom", ref guardsLst);
-                        }
-                    }
-                    return accumulatedValue;
+                    break;
                 case TileType.DCastle:
                     break;
                 case TileType.DCastleShield:
@@ -487,6 +442,12 @@ namespace Carcassonne.Common
                     break;
 
                 case TileType.Square:
+                    break;
+                case TileType.Monastery:
+                    break;
+                case TileType.MonasteryPlusRoad:
+                    break;
+                default:
                     break;
             }
 
