@@ -105,6 +105,7 @@
             MediaPlayer.IsRepeating = true;
 
             this.menuBackground = Content.Load<Texture2D>("background");
+            this.aboutBackground = this.Content.Load<Texture2D>("aboutBackground");
             this.menuFont = this.Content.Load<SpriteFont>("ArialMenu");
             this.gameFont = this.Content.Load<SpriteFont>("Arial");
             this.backgroundRect = new Rectangle(0, 0, CommonConstants.windowWidth, CommonConstants.windowHeight);
@@ -210,14 +211,18 @@
                     break;
                 case GameState.About:
                     this.spriteBatch.Draw(this.aboutBackground, this.backgroundRect, Color.White);
-                    this.spriteBatch.DrawString(this.menuFont, "About", new Vector2(UIConstants.aboutXOffset, UIConstants.aboutYOffset), Color.White);
-                    this.spriteBatch.DrawString(this.gameFont, UIConstants.aboutMessage, new Vector2(UIConstants.aboutXOffset, (UIConstants.aboutXOffset + UIConstants.aboutTextYOffset * 2)), Color.White);
-                    this.spriteBatch.DrawString(this.gameFont, UIConstants.aboutMessageNote, new Vector2(UIConstants.aboutXOffset, (UIConstants.aboutXOffset + UIConstants.aboutTextYOffset / 2 * 7)), Color.White);
-                    this.spriteBatch.DrawString(this.gameFont, UIConstants.aboutMessageUI, new Vector2(UIConstants.aboutXOffset, (UIConstants.aboutXOffset + UIConstants.aboutTextYOffset / 2 * 9)), Color.White);
+                    this.spriteBatch.DrawString(this.menuFont, "About", new Vector2(CommonConstants.aboutXOffset, CommonConstants.aboutYOffset), Color.White);
+                    this.spriteBatch.DrawString(this.gameFont, CommonConstants.aboutMessage, new Vector2(CommonConstants.aboutXOffset, (CommonConstants.aboutXOffset + CommonConstants.aboutTextYOffset * 2)), Color.White);
+                    this.spriteBatch.DrawString(this.gameFont, CommonConstants.aboutMessageNote, new Vector2(CommonConstants.aboutXOffset, (CommonConstants.aboutXOffset + CommonConstants.aboutTextYOffset / 2 * 7)), Color.White);
+                    this.spriteBatch.DrawString(this.gameFont, CommonConstants.aboutMessageUI, new Vector2(CommonConstants.aboutXOffset, (CommonConstants.aboutXOffset + CommonConstants.aboutTextYOffset / 2 * 9)), Color.White);
                     break;
                 case GameState.Exit:
                     this.spriteBatch.Draw(this.menuBackground, this.backgroundRect, Color.White);
                     break;
+                default:
+                    //TODO: implement ingame objects here
+                    break;
+            }
                     spriteBatch.End();
                     base.Draw(gameTime);
             }
