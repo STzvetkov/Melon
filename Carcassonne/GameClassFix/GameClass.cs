@@ -208,8 +208,8 @@
                     this.startTile.Update(gameTime);
                     //if (this.startTile.Collision(this.nextTile)) //TODO: implement absolute collision
                     //{
-                        //velocity = Vector2.Zero;
-                        //Deck.GetRandomTile();
+                    //velocity = Vector2.Zero;
+                    //Deck.GetRandomTile();
                     //}
                     break;
                 case GameState.About:
@@ -265,13 +265,13 @@
                 default:
                     this.spriteBatch.Draw(this.gameBackground, this.backgroundRect, Color.White);
                     startTile.Draw(spriteBatch, gameTime);
-                    spriteBatch.Draw(this.nextTile,this.position,Color.White);
+                    spriteBatch.Draw(this.nextTile, this.position, Color.White);
                     break;
             }
-                    spriteBatch.End();
-                    base.Draw(gameTime);
-            }
-
+            spriteBatch.End();
+            base.Draw(gameTime);
         }
+
     }
 }
+
