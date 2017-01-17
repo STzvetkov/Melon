@@ -13,6 +13,7 @@
     using Carcassonne.Menu;
     using System.Collections.Generic;
     using System.Threading;
+    using System;
 
     /// <summary>
     /// This is the main type for your game.
@@ -30,8 +31,6 @@
         private MouseState newMouseState;
         //background Music
         private Song backgroundMusic;
-        //tiles
-        private Sprite startTile;
         //menu
         private IList<MenuItem> menuOptions;
         private Texture2D menuBackground;
@@ -41,8 +40,15 @@
         private GameState gameState;
         private SpriteFont menuFont;
         private SpriteFont gameFont;
-
-
+        //ingame
+        private Sprite startTile;
+        private Texture2D nextTile;
+        private Texture2D gameBackground;
+        private SpriteFont ingameText;
+        private Vector2 position;
+        private Vector2 velocity;
+        private float speed = 100;
+        float? angle = null;
 
         private GameClass()
         {
@@ -86,7 +92,9 @@
             //deck initialization
             Deck.Initialize(Content);
             //starting tile
-            this.startTile = new Sprite(new Vector2((CommonConstants.windowWidth / 2) - CommonConstants.tileSize / 2, (CommonConstants.windowHeight / 2) - CommonConstants.tileSize / 2));
+            this.velocity = Vector2.Zero;
+            this.position = Vector2.Zero;
+            this.startTile = new Sprite(new Vector2(355, 255), bounds: CommonConstants.gameDimensions);
 
             base.Initialize();
         }
@@ -105,7 +113,8 @@
             MediaPlayer.IsRepeating = true;
 
             this.menuBackground = Content.Load<Texture2D>("background");
-            this.aboutBackground = this.Content.Load<Texture2D>("aboutBackground");
+            this.aboutBackground = Content.Load<Texture2D>("aboutBackground");
+            this.gameBackground = Content.Load<Texture2D>("gamebackground");
             this.menuFont = this.Content.Load<SpriteFont>("ArialMenu");
             this.gameFont = this.Content.Load<SpriteFont>("Arial");
             this.backgroundRect = new Rectangle(0, 0, CommonConstants.windowWidth, CommonConstants.windowHeight);
@@ -115,7 +124,8 @@
               new MenuItem("About", new Vector2(CommonConstants.windowWidth / 2, 320), Color.Crimson, this.Content),
               new MenuItem("Exit", new Vector2(CommonConstants.windowWidth / 2, 370), Color.Crimson, this.Content)
              };
-
+            this.startTile.LoadContent(Content, GraphicsDevice, "city1rwe");
+            this.nextTile = Content.Load<Texture2D>("road2sw");
             this.menuIndex = 1;
         }
 
@@ -125,7 +135,7 @@
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            startTile.Unload();
         }
 
         /// <summary>
@@ -167,7 +177,40 @@
                     {
                         this.gameState = GameState.Menu;
                     }
-                    //TODO: update ingame logic
+                    #region movement
+                    if (currentKeyboardState.IsKeyDown(Keys.Up))
+                    {
+                        angle = 3.0f * MathHelper.PiOver2;
+                    }
+                    else if (currentKeyboardState.IsKeyDown(Keys.Down))
+                    {
+                        angle = MathHelper.PiOver2;
+                    }
+                    else if (currentKeyboardState.IsKeyDown(Keys.Left))
+                    {
+                        angle = MathHelper.Pi;
+                    }
+                    else if (currentKeyboardState.IsKeyDown(Keys.Right))
+                    {
+                        angle = 0; //MathHelper.Pi * 2
+                    }
+                    if (angle.HasValue)
+                    {
+                        velocity = new Vector2((float)Math.Cos(angle.Value) * speed, (float)Math.Sin(angle.Value) * speed);
+                    }
+                    else
+                    {
+                        velocity = Vector2.Zero;
+                    }
+                    //position = position + speed * time
+                    position = Vector2.Add(position, Vector2.Multiply(velocity, (float)gameTime.ElapsedGameTime.TotalSeconds));
+                    #endregion
+                    this.startTile.Update(gameTime);
+                    //if (this.startTile.Collision(this.nextTile)) //TODO: implement absolute collision
+                    //{
+                        //velocity = Vector2.Zero;
+                        //Deck.GetRandomTile();
+                    //}
                     break;
                 case GameState.About:
 
@@ -220,7 +263,9 @@
                     this.spriteBatch.Draw(this.menuBackground, this.backgroundRect, Color.White);
                     break;
                 default:
-                    //TODO: implement ingame objects here
+                    this.spriteBatch.Draw(this.gameBackground, this.backgroundRect, Color.White);
+                    startTile.Draw(spriteBatch, gameTime);
+                    spriteBatch.Draw(this.nextTile,this.position,Color.White);
                     break;
             }
                     spriteBatch.End();

@@ -10,7 +10,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GameClassFix</RootNamespace>
-    <AssemblyName>GameClassFix</AssemblyName>
+    <AssemblyName>TeamMelonProject</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
@@ -97,6 +97,7 @@
     <Content Include="Content\city4.png" />
     <Content Include="Content\cloister.png" />
     <Content Include="Content\cloisterr.png" />
+    <Content Include="Content\gamebackground.jpg" />
     <Content Include="Content\road2ns.png" />
     <Content Include="Content\road2sw.png" />
     <Content Include="Content\road3.png" />
