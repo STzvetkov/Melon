@@ -10,6 +10,9 @@
     using Carcassonne.Common;
     using Carcassonne.Constants;
     using Carcassonne;
+    using Carcassonne.Menu;
+    using System.Collections.Generic;
+    using System.Threading;
 
     /// <summary>
     /// This is the main type for your game.
@@ -29,6 +32,17 @@
         private Song backgroundMusic;
         //tiles
         private Sprite startTile;
+        //menu
+        private IList<MenuItem> menuOptions;
+        private Texture2D menuBackground;
+        private Texture2D aboutBackground;
+        private Rectangle backgroundRect;
+        private int menuIndex;
+        private GameState gameState;
+        private SpriteFont menuFont;
+        private SpriteFont gameFont;
+
+
 
         private GameClass()
         {
@@ -85,10 +99,23 @@
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
+
             backgroundMusic = Content.Load<Song>("CarcassonneBackground");
             MediaPlayer.Play(backgroundMusic);
             MediaPlayer.IsRepeating = true;
-            // TODO: use this.Content to load your game content here
+
+            this.menuBackground = Content.Load<Texture2D>("background");
+            this.menuFont = this.Content.Load<SpriteFont>("ArialMenu");
+            this.gameFont = this.Content.Load<SpriteFont>("Arial");
+            this.backgroundRect = new Rectangle(0, 0, CommonConstants.windowWidth, CommonConstants.windowHeight);
+            this.menuOptions = new List<MenuItem>
+            {
+              new MenuItem("New game", new Vector2(CommonConstants.windowWidth / 2, 270), Color.Crimson, this.Content),
+              new MenuItem("About", new Vector2(CommonConstants.windowWidth / 2, 320), Color.Crimson, this.Content),
+              new MenuItem("Exit", new Vector2(CommonConstants.windowWidth / 2, 370), Color.Crimson, this.Content)
+             };
+
+            this.menuIndex = 1;
         }
 
         /// <summary>
@@ -112,12 +139,47 @@
                 Exit();
             }
 
-            // TODO: Add your update logic here
             this.currentKeyboardState = this.newKeyboardState;
             this.newKeyboardState = Keyboard.GetState();
             this.currentMouseState = this.newMouseState;
             this.newMouseState = Mouse.GetState();
 
+            switch (gameState)
+            {
+                case GameState.Menu:
+                    if (this.newKeyboardState.IsKeyDown(Keys.Enter) && this.currentKeyboardState.IsKeyUp(Keys.Enter))
+                    {
+                        this.gameState = (GameState)menuIndex;
+                    }
+                    if (this.newKeyboardState.IsKeyDown(Keys.Down) && this.currentKeyboardState.IsKeyUp(Keys.Down) && menuIndex <= 2)
+                    {
+                        menuIndex += 1;
+                    }
+                    if (this.newKeyboardState.IsKeyDown(Keys.Up) && this.currentKeyboardState.IsKeyUp(Keys.Up) && menuIndex >= 2)
+                    {
+                        menuIndex -= 1;
+                    }
+                    break;
+                case GameState.NewGame:
+
+                    if (this.newKeyboardState.IsKeyDown(Keys.M) && this.currentKeyboardState.IsKeyUp(Keys.M))
+                    {
+                        this.gameState = GameState.Menu;
+                    }
+                    //TODO: update ingame logic
+                    break;
+                case GameState.About:
+
+                    if (this.newKeyboardState.IsKeyDown(Keys.M) && this.currentKeyboardState.IsKeyUp(Keys.M))
+                    {
+                        this.gameState = GameState.Menu;
+                    }
+
+                    break;
+                case GameState.Exit:
+                    Exit();
+                    break;
+            }
             base.Update(gameTime);
         }
 
@@ -128,9 +190,35 @@
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            switch (this.gameState)
+            {
+                case GameState.Menu:
+                    this.spriteBatch.Draw(this.menuBackground, this.backgroundRect, Color.White);
+                    for (int i = 0; i < menuOptions.Count; i += 1)
+                    {
+                        if (i == menuIndex - 1)
+                        {
+                            this.menuOptions[i].UpdateColor(Color.Black);
+                        }
+                        else
+                        {
+                            this.menuOptions[i].UpdateColor(Color.Crimson);
+                        }
+                        this.menuOptions[i].Draw(this.spriteBatch);
+                    }
+                    break;
+                case GameState.About:
+                    this.spriteBatch.Draw(this.aboutBackground, this.backgroundRect, Color.White);
+                    this.spriteBatch.DrawString(this.menuFont, "About", new Vector2(UIConstants.aboutXOffset, UIConstants.aboutYOffset), Color.White);
+                    this.spriteBatch.DrawString(this.gameFont, UIConstants.aboutMessage, new Vector2(UIConstants.aboutXOffset, (UIConstants.aboutXOffset + UIConstants.aboutTextYOffset * 2)), Color.White);
+                    this.spriteBatch.DrawString(this.gameFont, UIConstants.aboutMessageNote, new Vector2(UIConstants.aboutXOffset, (UIConstants.aboutXOffset + UIConstants.aboutTextYOffset / 2 * 7)), Color.White);
+                    this.spriteBatch.DrawString(this.gameFont, UIConstants.aboutMessageUI, new Vector2(UIConstants.aboutXOffset, (UIConstants.aboutXOffset + UIConstants.aboutTextYOffset / 2 * 9)), Color.White);
+                    break;
+                case GameState.Exit:
+                    this.spriteBatch.Draw(this.menuBackground, this.backgroundRect, Color.White);
+                    break;
+                    spriteBatch.End();
             base.Draw(gameTime);
         }
 

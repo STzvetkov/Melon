@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace Carcassonne.Common
 {
-    public enum GameStateEnum
+    public enum GameState
     {
         Menu = 0,
         NewGame,
+        About,
         UpdateResult,
         EndResult,
         Exit,
         Win,
-        PlayerOnTurn
+        PlayerOnTurn,
     }
 }
