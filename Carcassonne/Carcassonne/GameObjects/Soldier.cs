@@ -36,8 +36,6 @@ namespace Carcassonne.GameObjects
             }
         }
 
-        //TODO: Add constructor
-
         public Soldier()
         {
             this.isActive = false;

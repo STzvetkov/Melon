@@ -469,6 +469,19 @@ namespace Carcassonne.GameObjects
             {
                 return false;
             }
+            else if (this.SectorsGrid[row,col].Terrain == TerrainTypeEnum.Monastery || this.SectorsGrid[row, col].Terrain == TerrainTypeEnum.Road)
+            {
+                if (row == GridSize/2 && col == GridSize/2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+
             //TODO check if soldier can be placed
             return false;
         }
