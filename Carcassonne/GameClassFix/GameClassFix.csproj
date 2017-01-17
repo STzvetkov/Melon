@@ -118,6 +118,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AdditionalClassDiagram.cd" />
     <None Include="app.config" />
     <None Include="Content\Arial.spritefont" />
     <None Include="Content\ArialMenu.spritefont" />

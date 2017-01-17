@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameClassFix.DebugSprite" Collapsed="true">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgADAAAAAAAACAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>DebugSprite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameClassFix.Deck" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAEAAAQAAAAAAAAAAAAEgAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Deck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameClassFix.GameClass" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQIEFAQAAAAC0AIAECAIEAAAQgAEQgIAAQgAABRAEQ=</HashCode>
+      <FileName>GameClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameClassFix.Sprite" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CEQAAACAAIAAggAgCAAAICAACAAgAgCAAAZCAChAAAQ=</HashCode>
+      <FileName>Sprite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameClassFix.Startup" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
