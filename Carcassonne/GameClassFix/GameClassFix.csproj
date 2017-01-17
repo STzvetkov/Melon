@@ -57,6 +57,7 @@
     <StartupObject>GameClassFix.Startup</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Deck.cs" />
     <Compile Include="GameClass.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +73,31 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\CarcassonneBackground.mp3" />
+    <Content Include="Content\city1.png" />
+    <Content Include="Content\city11ne.png" />
+    <Content Include="Content\city11we.png" />
+    <Content Include="Content\city1rse.png" />
+    <Content Include="Content\city1rsw.png" />
+    <Content Include="Content\city1rswe.png" />
+    <Content Include="Content\city1rwe.png" />
+    <Content Include="Content\city2nw.png" />
+    <Content Include="Content\city2nwr.png" />
+    <Content Include="Content\city2nws.png" />
+    <Content Include="Content\city2nwsr.png" />
+    <Content Include="Content\city2we.png" />
+    <Content Include="Content\city2wes.png" />
+    <Content Include="Content\city3.png" />
+    <Content Include="Content\city3r.png" />
+    <Content Include="Content\city3s.png" />
+    <Content Include="Content\city3sr.png" />
+    <Content Include="Content\city4.png" />
+    <Content Include="Content\cloister.png" />
+    <Content Include="Content\cloisterr.png" />
+    <Content Include="Content\road2ns.png" />
+    <Content Include="Content\road2sw.png" />
+    <Content Include="Content\road3.png" />
+    <Content Include="Content\road4.png" />
+    <Content Include="Content\Soldier.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

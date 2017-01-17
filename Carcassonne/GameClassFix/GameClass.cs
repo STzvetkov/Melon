@@ -14,7 +14,7 @@
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public sealed class GameClass : Game
+    public sealed class GameClass : UseOtherGameClass
     {
         private static GameClass game;
         private GraphicsDeviceManager graphics;
