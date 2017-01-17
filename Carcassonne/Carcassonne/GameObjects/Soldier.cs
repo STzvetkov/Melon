@@ -54,5 +54,10 @@ namespace Carcassonne.GameObjects
             this.isFermer = initIsFermer;
             this.playerColorId = initPlayerColorID;
         }
+
+        public override void Move(byte x, byte y)
+        {
+            //TODO:
+        }
     }
 }

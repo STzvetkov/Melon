@@ -8,5 +8,7 @@ namespace Carcassonne.GameObjects
 {
     public abstract class Pawn:MapObjects
     {
+        public abstract void Move(byte x, byte y);
+
     }
 }

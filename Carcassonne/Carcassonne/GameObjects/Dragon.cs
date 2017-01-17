@@ -8,5 +8,10 @@ namespace Carcassonne.GameObjects
 {
     class Dragon : Creature
     {
+
+        public override void Move(byte x, byte y)
+        {
+            //TODO
+        }
     }
 }

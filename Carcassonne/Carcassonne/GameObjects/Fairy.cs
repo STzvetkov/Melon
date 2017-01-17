@@ -8,5 +8,9 @@ namespace Carcassonne.GameObjects
 {
     class Fairy : Creature
     {
+        public override void Move(byte x, byte y)
+        {
+            //TODO:
+        }
     }
 }
